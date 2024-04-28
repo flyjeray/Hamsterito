@@ -706,6 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 498774790efe3a347a2f73649a9a1a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  noiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
 --- !u!114 &1489724937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -718,7 +719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ae39b4c4ad8d624eae58de432129f22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPrefab: {fileID: 4374903240276013472, guid: bd66b35e21847ba448b60842cf45c40d, type: 3}
+  weaponPrefab: {fileID: 3026549439866293583, guid: 21e35df1b049cf24196ba9f25aa17b7c, type: 3}
 --- !u!120 &1489724938
 LineRenderer:
   serializedVersion: 2

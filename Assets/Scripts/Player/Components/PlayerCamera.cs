@@ -7,6 +7,9 @@ public class PlayerCamera : MonoBehaviour
 {
     private CinemachineVirtualCamera virtualCamera; 
     private CinemachineTransposer transposer;
+    private CinemachineBasicMultiChannelPerlin perlin;
+    [SerializeField]
+    private NoiseSettings noiseProfile;
 
     private float regularSize = 5;
     private float aimingSize = 7.5f;
@@ -26,6 +29,9 @@ public class PlayerCamera : MonoBehaviour
         virtualCamera.Follow = transform;
         transposer = virtualCamera.AddCinemachineComponent<CinemachineTransposer>();
         transposer.m_FollowOffset = new Vector3(0, 1.5f, -1);
+        perlin = virtualCamera.AddCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        perlin.m_NoiseProfile = noiseProfile;
+        SetShake(0);
 
         virtualCamera.m_Lens.OrthographicSize = regularSize;
     }
@@ -40,5 +46,9 @@ public class PlayerCamera : MonoBehaviour
 
     public void UpdateAimingState(bool _isAiming) {
         isAiming = _isAiming;
+    }
+
+    public void SetShake(float intensity) {
+        perlin.m_AmplitudeGain = intensity;
     }
 }
