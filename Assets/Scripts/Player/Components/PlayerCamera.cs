@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     private CinemachineVirtualCamera virtualCamera; 
-    private CinemachineFramingTransposer transposer;
+    private CinemachineTransposer transposer;
 
     private float regularSize = 5;
     private float aimingSize = 7.5f;
@@ -24,8 +24,8 @@ public class PlayerCamera : MonoBehaviour
         
         virtualCamera = camera.AddComponent<CinemachineVirtualCamera>();
         virtualCamera.Follow = transform;
-        transposer = virtualCamera.AddCinemachineComponent<CinemachineFramingTransposer>();
-        transposer.m_TrackedObjectOffset = new Vector3(0, 1.5f, 0);
+        transposer = virtualCamera.AddCinemachineComponent<CinemachineTransposer>();
+        transposer.m_FollowOffset = new Vector3(0, 1.5f, -1);
 
         virtualCamera.m_Lens.OrthographicSize = regularSize;
     }

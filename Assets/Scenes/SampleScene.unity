@@ -604,7 +604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 3
-  JumpForce: 500
+  JumpForce: 300
+  DashForce: 5
 --- !u!61 &1489724933
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -675,7 +676,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!4 &1489724935
 Transform:
