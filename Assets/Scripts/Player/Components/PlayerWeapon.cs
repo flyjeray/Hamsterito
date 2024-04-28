@@ -9,6 +9,8 @@ public class PlayerWeapon : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private float cameraShakeIntensity = 15;
+    [SerializeField]
+    private float maxDistance = 5;
     
     [SerializeField]
     private int currAmmo = 1;
@@ -18,9 +20,13 @@ public class PlayerWeapon : MonoBehaviour
     private bool isShotReady = true;
     [SerializeField]
     private float shotDelay = 0.5f;
+    [SerializeField]
+    private bool showHitMarker = true;
     
     [SerializeField]
     private float reloadDelay = 0.5f;
+    [SerializeField]
+    private bool isReloadingByOne = false;
     private bool isReloading = false;
 
     private Coroutine reloadCoroutine;
@@ -78,7 +84,11 @@ public class PlayerWeapon : MonoBehaviour
         while (currAmmo < maxAmmo) {
             isReloading = true;
             yield return new WaitForSeconds(reloadDelay);
-            currAmmo++;
+            if (isReloadingByOne) {
+                currAmmo++;
+            } else {
+                currAmmo = maxAmmo;
+            }
         }
         isReloading = false;
     }
@@ -87,7 +97,19 @@ public class PlayerWeapon : MonoBehaviour
         return isReloading;
     }
 
+    public bool IsReloadNeeded() {
+        return currAmmo < maxAmmo;
+    }
+
     public void Reload() {
         reloadCoroutine = StartCoroutine(ReloadEnumerator());
+    }
+
+    public float GetMaxDistance() {
+        return maxDistance;
+    }
+
+    public bool IsShowingHitMarker() {
+        return showHitMarker;
     }
 }

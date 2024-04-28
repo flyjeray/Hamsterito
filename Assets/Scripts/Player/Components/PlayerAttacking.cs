@@ -10,10 +10,10 @@ using UnityEngine;
 public class PlayerAttacking : MonoBehaviour
 {
     private bool isAiming;
-    private float aimingDistance = 5;
     private float aimAngle = 0;
     private float aimLineWidth = .1f;
     private float aimSens = 500;
+    private float aimLineEndAlpha = .1f;
 
     private bool maxAmmoOnSpawn = true;
 
@@ -23,6 +23,7 @@ public class PlayerAttacking : MonoBehaviour
 
     public GameObject weaponPrefab;
     private PlayerWeapon weapon;
+    public GameObject hitmarkerPrefab;
 
     void Awake() {
         playerCamera = GetComponent<PlayerCamera>();
@@ -61,7 +62,7 @@ public class PlayerAttacking : MonoBehaviour
             playerCamera.UpdateAimingState(isAiming);
         }
 
-        if (Input.GetKeyDown(KeyCode.R) && weapon && !weapon.IsReloading()) {
+        if (Input.GetKeyDown(KeyCode.R) && weapon && !weapon.IsReloading() && weapon.IsReloadNeeded()) {
             weapon.Reload();
         } else if (isAiming && weapon) {
             float resultAngle = movement.IsFacingRight() ? -aimAngle : aimAngle;
@@ -76,12 +77,25 @@ public class PlayerAttacking : MonoBehaviour
             weapon.FaceSpriteRight(movement.IsFacingRight());
             weapon.transform.rotation = Quaternion.Euler(0, 0, resultAngle + 90);
 
-            RaycastHit2D hit = Physics2D.Raycast(aimLineStart, aimLineDir, aimingDistance, ~LayerMask.GetMask("Player"));
-            aimLine.SetPositions(new Vector3[]{ aimLineStart, hit.collider ? hit.point : aimLineStart + aimLineDir * aimingDistance });
+            RaycastHit2D hit = Physics2D.Raycast(aimLineStart, aimLineDir, weapon.GetMaxDistance(), ~LayerMask.GetMask("Player"));
+
+            if (hit.collider && hit.collider.GetComponent<HealthManager>()) {
+                aimLine.startColor = Color.red;
+                aimLine.endColor = new Color{ a=aimLineEndAlpha, r=255 };
+            } else {
+                aimLine.startColor = Color.green;
+                aimLine.endColor = new Color{ a=aimLineEndAlpha, g=255 };
+            }
+            
+            aimLine.SetPositions(new Vector3[]{ aimLineStart, hit.collider ? hit.point : aimLineStart + aimLineDir * weapon.GetMaxDistance() });
 
             if (Input.GetMouseButton(0) && weapon.IsAbleToShoot()) {
                 weapon.Shoot(hit);
                 StartCoroutine(ShakeCamera(weapon.GetCameraShakeIntensity(), 0.2f));
+
+                if (weapon.IsShowingHitMarker() && hit.collider && hitmarkerPrefab) {
+                    Instantiate(hitmarkerPrefab, hit.point, Quaternion.identity);
+                }
             }
 
             aimAngle = Math.Clamp(aimAngle - Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * aimSens, 0, 180);

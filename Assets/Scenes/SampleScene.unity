@@ -720,6 +720,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponPrefab: {fileID: 3026549439866293583, guid: 21e35df1b049cf24196ba9f25aa17b7c, type: 3}
+  hitmarkerPrefab: {fileID: 2850906624568900831, guid: 42e35b6926d8e804ab7105663facc922, type: 3}
 --- !u!120 &1489724938
 LineRenderer:
   serializedVersion: 2
