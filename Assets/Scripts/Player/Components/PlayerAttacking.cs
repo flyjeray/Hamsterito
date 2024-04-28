@@ -11,14 +11,14 @@ public class PlayerAttacking : MonoBehaviour
 {
     private bool isAiming;
     private float aimingDistance = 5;
-    private float aimingAngle = 0;
+    private float aimAngle = 0;
     private float aimLineWidth = .1f;
-    private float aimingSens = 500;
+    private float aimSens = 500;
 
     private bool isShotReady = true;
     private float shotDelay = 0.5f;
 
-    private int currentAmmo = 1;
+    private int currAmmo = 1;
     private int maxAmmo = 6;
     private bool maxAmmoOnSpawn = true;
     
@@ -26,24 +26,33 @@ public class PlayerAttacking : MonoBehaviour
     private bool isReloading = false;
 
     private PlayerCamera playerCamera;
-    private PlayerMovement playerMovement;
+    private PlayerMovement movement;
     private Coroutine reloadCoroutine;
-    private LineRenderer lineRenderer;
+    private LineRenderer aimLine;
+
+    public GameObject weaponPrefab;
+    private GameObject weapon;
+    private SpriteRenderer weaponRenderer;
 
     void Awake() {
         playerCamera = GetComponent<PlayerCamera>();
-        playerMovement = GetComponent<PlayerMovement>();
+        movement = GetComponent<PlayerMovement>();
 
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.enabled = false;
-        lineRenderer.startWidth = aimLineWidth;
-        lineRenderer.endWidth = aimLineWidth;
-        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
-        lineRenderer.startColor = Color.red;
-        lineRenderer.endColor = Color.red;
+        weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
+        weapon.transform.SetParent(transform);
+        weaponRenderer = weapon.GetComponent<SpriteRenderer>();
+        weaponRenderer.sortingOrder = 1;
+
+        aimLine = GetComponent<LineRenderer>();
+        aimLine.enabled = false;
+        aimLine.startWidth = aimLineWidth;
+        aimLine.endWidth = aimLineWidth;
+        aimLine.material = new Material(Shader.Find("Sprites/Default"));
+        aimLine.startColor = Color.red;
+        aimLine.endColor = Color.red;
 
         if (maxAmmoOnSpawn) {
-            currentAmmo = maxAmmo;
+            currAmmo = maxAmmo;
         }
 
         Cursor.visible = false;
@@ -51,7 +60,7 @@ public class PlayerAttacking : MonoBehaviour
 
     void Shoot(RaycastHit2D hit) {
         isShotReady = false;
-        currentAmmo--;
+        currAmmo--;
         if (hit.collider) {
             HealthManager health = hit.collider.GetComponent<HealthManager>();
 
@@ -69,10 +78,10 @@ public class PlayerAttacking : MonoBehaviour
     }
 
     IEnumerator Reload() {
-        while (currentAmmo < maxAmmo) {
+        while (currAmmo < maxAmmo) {
             isReloading = true;
             yield return new WaitForSeconds(reloadDelay);
-            currentAmmo++;
+            currAmmo++;
         }
         isReloading = false;
     }
@@ -83,24 +92,35 @@ public class PlayerAttacking : MonoBehaviour
         if (playerCamera != null) {
             playerCamera.UpdateAimingState(isAiming);
         }
+        
+        weaponRenderer.enabled = isAiming;
 
         if (isAiming) {
-            Vector3 aimingDirection = Quaternion.Euler(0, 0, playerMovement.IsFacingRight() ? -aimingAngle : aimingAngle) * Vector3.up;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, aimingDirection, aimingDistance, ~LayerMask.GetMask("Player"));
-            lineRenderer.SetPositions(new Vector3[]{ transform.position, hit.collider ? hit.point : transform.position + aimingDirection * aimingDistance });
-            if (Input.GetMouseButtonDown(0) && isShotReady && currentAmmo > 0) {
+            float resultAngle = movement.IsFacingRight() ? -aimAngle : aimAngle;
+            
+            Vector3 aimLineStart = weapon.transform.GetChild(0).position;
+            Vector3 aimLineDir = Quaternion.Euler(0, 0, resultAngle) * Vector3.up;
+
+            weaponRenderer.transform.localScale = new Vector3(1, movement.IsFacingRight() ? 1 : -1, 1);
+            weapon.transform.rotation = Quaternion.Euler(0, 0, resultAngle + 90);
+
+            RaycastHit2D hit = Physics2D.Raycast(aimLineStart, aimLineDir, aimingDistance, ~LayerMask.GetMask("Player"));
+            aimLine.SetPositions(new Vector3[]{ aimLineStart, hit.collider ? hit.point : aimLineStart + aimLineDir * aimingDistance });
+
+            if (Input.GetMouseButtonDown(0) && isShotReady && currAmmo > 0) {
                 if (reloadCoroutine != null) {
                     isReloading = false;
                     StopCoroutine(reloadCoroutine);
                 }
                 Shoot(hit);
             }
-            aimingAngle = Math.Clamp(aimingAngle - Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * aimingSens, 0, 180);
+
+            aimAngle = Math.Clamp(aimAngle - Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * aimSens, 0, 180);
         } else if (Input.GetKeyDown(KeyCode.R) && !isReloading) {
             reloadCoroutine = StartCoroutine(Reload());
         }
 
-        lineRenderer.enabled = isAiming;
+        aimLine.enabled = isAiming;
     }
 
     public bool IsAiming() { return isAiming; }
