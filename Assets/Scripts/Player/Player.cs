@@ -10,5 +10,6 @@ public class Player : MonoBehaviour {
     void Awake() {
         gameObject.tag = "Player";
         gameObject.name = "PLAYER";
+        gameObject.layer = 6;
     }
 }
