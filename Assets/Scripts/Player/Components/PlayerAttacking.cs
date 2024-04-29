@@ -44,7 +44,7 @@ public class PlayerAttacking : MonoBehaviour
         aimLine.material = new Material(Shader.Find("Sprites/Default"));
         aimLine.startColor = Color.red;
         aimLine.endColor = Color.red;
-        aimLine.sortingOrder = 1;
+        aimLine.sortingOrder = 4;
 
         if (maxAmmoOnSpawn && weapon) {
             weapon.ReloadInstantly();
@@ -61,6 +61,7 @@ public class PlayerAttacking : MonoBehaviour
 
     void Update() {
         isAiming = Input.GetMouseButton(1);
+        playerUI.SetActive(isAiming);
 
         if (playerCamera != null) {
             playerCamera.UpdateAimingState(isAiming);

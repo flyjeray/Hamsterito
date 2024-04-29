@@ -24,6 +24,10 @@ public class PlayerUI : MonoBehaviour
         canvas_go.transform.SetParent(transform);
     }
 
+    public void SetActive(bool isActive) {
+        canvas.enabled = isActive;
+    }
+
     public void SetupBullets(int amount, int activeAmount) {
         bullets = new List<GameObject>{};
         for (int i = 1; i <= amount; i++) {
@@ -34,7 +38,7 @@ public class PlayerUI : MonoBehaviour
             img.sprite = bullet;
 
             bullet_go.transform.localScale = new Vector3(1, 1, 1);
-            bullet_go.GetComponent<RectTransform>().sizeDelta = new Vector2(.5f, .5f);
+            bullet_go.GetComponent<RectTransform>().sizeDelta = new Vector2(.4f, .4f);
             bullet_go.transform.Rotate(new Vector3(0, 0, 0), 360 / amount * i);
             bullet_go.transform.SetParent(canvas_go.transform);
 
