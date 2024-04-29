@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 [RequireComponent(typeof(PlayerCamera))]
 [RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(PlayerUI))]
 public class PlayerAttacking : MonoBehaviour
 {
     private bool isAiming;
@@ -19,6 +20,7 @@ public class PlayerAttacking : MonoBehaviour
 
     private PlayerCamera playerCamera;
     private PlayerMovement movement;
+    private PlayerUI playerUI;
     private LineRenderer aimLine;
 
     public GameObject weaponPrefab;
@@ -28,10 +30,12 @@ public class PlayerAttacking : MonoBehaviour
     void Awake() {
         playerCamera = GetComponent<PlayerCamera>();
         movement = GetComponent<PlayerMovement>();
+        playerUI = GetComponent<PlayerUI>();
 
         GameObject weapon_go = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
         weapon_go.transform.SetParent(transform);
         weapon = weapon_go.GetComponent<PlayerWeapon>();
+        weapon.BindUI(playerUI);
 
         aimLine = GetComponent<LineRenderer>();
         aimLine.enabled = false;

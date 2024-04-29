@@ -7,6 +7,7 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+    private PlayerUI playerUI;
     [SerializeField]
     private float cameraShakeIntensity = 15;
     [SerializeField]
@@ -36,6 +37,10 @@ public class PlayerWeapon : MonoBehaviour
         spriteRenderer.sortingOrder = 1;
     }
 
+    void Start() {
+        playerUI.SetupBullets(maxAmmo, currAmmo);
+    }
+
     public void ReloadInstantly() {
         currAmmo = maxAmmo;
     }
@@ -57,6 +62,10 @@ public class PlayerWeapon : MonoBehaviour
         return cameraShakeIntensity;
     }
 
+    public void BindUI(PlayerUI ui) {
+        playerUI = ui;
+    }
+
     IEnumerator ShotDelayEnumerator()
     {
         yield return new WaitForSeconds(shotDelay);
@@ -71,6 +80,7 @@ public class PlayerWeapon : MonoBehaviour
 
         isShotReady = false;
         currAmmo--;
+        playerUI.UpdateBulletsVisibility(currAmmo);
         if (hit.collider) {
             HealthManager health = hit.collider.GetComponent<HealthManager>();
 
@@ -90,6 +100,7 @@ public class PlayerWeapon : MonoBehaviour
             } else {
                 currAmmo = maxAmmo;
             }
+            playerUI.UpdateBulletsVisibility(currAmmo);
         }
         isReloading = false;
     }
