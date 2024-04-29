@@ -7,11 +7,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(PlayerAttacking))]
+[RequireComponent(typeof(PlayerVisual))]
+[RequireComponent(typeof(Animator))]
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PlayerAttacking playerAttacking;
+    private PlayerVisual playerVisual;
     private BoxCollider2D box;
+    private Animator animator;
     private float movement;
     private bool facingRight = true;
 
@@ -21,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Awake() {
         playerAttacking = GetComponent<PlayerAttacking>();
+        playerVisual = GetComponent<PlayerVisual>();
 
         rb = GetComponent<Rigidbody2D>();
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
@@ -28,13 +33,17 @@ public class PlayerMovement : MonoBehaviour
         rb.sharedMaterial = new PhysicsMaterial2D{ friction = 0, name = "PLAYER - Physics Material" };
 
         box = GetComponent<BoxCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update() {
         movement = Input.GetAxisRaw("Horizontal");
+        animator.SetBool("Moving", movement != 0);
         if (movement > 0 && !playerAttacking.IsAiming()) {
+            playerVisual.FaceSpriteRight(false);
             facingRight = true;
         } else if (movement < 0 && !playerAttacking.IsAiming()) {
+            playerVisual.FaceSpriteRight(true);
             facingRight = false;
         }
         Vector2 direction = new Vector3(transform.position.x, box.bounds.min.y, transform.position.z) - transform.position;

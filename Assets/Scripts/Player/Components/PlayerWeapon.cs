@@ -45,6 +45,7 @@ public class PlayerWeapon : MonoBehaviour
     }
 
     public void FaceSpriteRight(bool facingRight) {
+        // need to use scale instead of flipY not to mess with child barrel gameobject
         spriteRenderer.transform.localScale = new Vector3(1, facingRight ? 1 : -1, 1);
     }
 
