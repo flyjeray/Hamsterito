@@ -13,12 +13,14 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private NoiseSettings noiseProfile;
     private PlayerMovement playerMovement;
+    private PlayerAttacking playerAttacking;
 
     private float regularSize = 5;
-    private float aimingSize = 3;
+    private float aimingSize = 4;
     private bool isAiming = false;
     private float zoomSpeed = 10;
     private float aimingCameraXOffset = 2;
+    private float restingCameraYOffset = 1.5f;
 
     void Awake() {
         Camera.main.gameObject.TryGetComponent<CinemachineBrain>(out var brain);
@@ -32,7 +34,7 @@ public class PlayerCamera : MonoBehaviour
         virtualCamera = camera.AddComponent<CinemachineVirtualCamera>();
         virtualCamera.Follow = transform;
         transposer = virtualCamera.AddCinemachineComponent<CinemachineTransposer>();
-        transposer.m_FollowOffset = new Vector3(0, 1.5f, -1);
+        transposer.m_FollowOffset = new Vector3(0, restingCameraYOffset, -1);
         perlin = virtualCamera.AddCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         perlin.m_NoiseProfile = noiseProfile;
         SetShake(0);
@@ -40,6 +42,7 @@ public class PlayerCamera : MonoBehaviour
         virtualCamera.m_Lens.OrthographicSize = regularSize;
 
         playerMovement = GetComponent<PlayerMovement>();
+        playerAttacking = GetComponent<PlayerAttacking>();
     }
 
     void FixedUpdate() {
@@ -60,7 +63,11 @@ public class PlayerCamera : MonoBehaviour
                 playerMovement.IsFacingRight() ? aimingCameraXOffset : -aimingCameraXOffset,
                 zoomSpeed * Time.fixedDeltaTime
             ),
-            transposer.m_FollowOffset.y,
+            Mathf.Lerp(
+                transposer.m_FollowOffset.y, 
+                playerAttacking.IsAiming() ? 0 : restingCameraYOffset,
+                zoomSpeed * Time.fixedDeltaTime
+            ),
             transposer.m_FollowOffset.z
         );
     }

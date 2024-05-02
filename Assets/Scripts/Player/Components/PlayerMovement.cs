@@ -20,8 +20,8 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
 
     public float Speed = 5;
-    public float AimingSpeedMultiplier = 0.5f;
-    public float JumpForce = 300;
+    public float AimingSpeedMultiplier = 0.85f;
+    public float JumpForce = 400;
     private float aimTurnDeadzone = .3f;
 
     void Awake() {
