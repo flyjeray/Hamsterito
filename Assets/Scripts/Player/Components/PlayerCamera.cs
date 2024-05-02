@@ -15,7 +15,7 @@ public class PlayerCamera : MonoBehaviour
     private PlayerMovement playerMovement;
 
     private float regularSize = 5;
-    private float aimingSize = 7.5f;
+    private float aimingSize = 3;
     private bool isAiming = false;
     private float zoomSpeed = 10;
     private float aimingCameraXOffset = 2;
@@ -44,7 +44,7 @@ public class PlayerCamera : MonoBehaviour
 
     void FixedUpdate() {
         float currSize = virtualCamera.m_Lens.OrthographicSize;
-        bool shouldZoom = isAiming ? (currSize <= aimingSize) : (currSize >= regularSize);
+        bool shouldZoom = isAiming ? (currSize >= aimingSize) : (currSize <= regularSize);
 
         if (shouldZoom) {
             virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(

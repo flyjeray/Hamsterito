@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public float Speed = 5;
     public float AimingSpeedMultiplier = 0.5f;
     public float JumpForce = 300;
+    private float aimTurnDeadzone = .3f;
 
     void Awake() {
         playerAttacking = GetComponent<PlayerAttacking>();
@@ -38,13 +39,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Update() {
         movement = Input.GetAxisRaw("Horizontal");
+        float looking = Input.GetAxisRaw("Mouse X");
         animator.SetBool("Moving", movement != 0);
-        if (movement > 0 && !playerAttacking.IsAiming()) {
-            playerVisual.FaceSpriteRight(false);
-            facingRight = true;
-        } else if (movement < 0 && !playerAttacking.IsAiming()) {
-            playerVisual.FaceSpriteRight(true);
-            facingRight = false;
+        if (!playerAttacking.IsAiming() && movement != 0) {
+            playerVisual.FaceSpriteRight(movement < 0);
+            facingRight = movement > 0;
+        } else if (playerAttacking.IsAiming()) {
+            if (looking < -aimTurnDeadzone) {
+                playerVisual.FaceSpriteRight(true);
+                facingRight = false;
+            } else if (looking > aimTurnDeadzone) {
+                playerVisual.FaceSpriteRight(false);
+                facingRight = true;
+            }
         }
         Vector2 direction = new Vector3(transform.position.x, box.bounds.min.y, transform.position.z) - transform.position;
         float distance = Vector2.Distance(transform.position, box.bounds.min);
