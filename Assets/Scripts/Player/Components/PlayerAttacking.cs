@@ -25,7 +25,6 @@ public class PlayerAttacking : MonoBehaviour
 
     public GameObject weaponPrefab;
     private PlayerWeapon weapon;
-    public GameObject hitmarkerPrefab;
 
     void Awake() {
         playerCamera = GetComponent<PlayerCamera>();
@@ -95,12 +94,8 @@ public class PlayerAttacking : MonoBehaviour
             aimLine.SetPositions(new Vector3[]{ aimLineStart, hit.collider ? hit.point : aimLineStart + aimLineDir * weapon.GetMaxDistance() });
 
             if (Input.GetMouseButton(0) && weapon.IsAbleToShoot()) {
-                weapon.Shoot(hit);
+                weapon.Shoot(aimLineStart + aimLineDir * weapon.GetMaxDistance(), movement.GetCollider2D());
                 StartCoroutine(ShakeCamera(weapon.GetCameraShakeIntensity(), 0.2f));
-
-                if (weapon.IsShowingHitMarker() && hit.collider && hitmarkerPrefab) {
-                    Instantiate(hitmarkerPrefab, hit.point, Quaternion.identity);
-                }
             }
 
             aimAngle = Math.Clamp(aimAngle - Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * aimSens, 0, 180);

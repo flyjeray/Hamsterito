@@ -66,4 +66,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate() {
         rb.velocity = new Vector2(movement * Speed * (playerAttacking.IsAiming() ? AimingSpeedMultiplier : 1), rb.velocity.y);
     }
+
+    public Collider2D GetCollider2D() { return GetComponent<BoxCollider2D>(); }
 }

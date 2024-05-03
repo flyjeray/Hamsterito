@@ -21,8 +21,6 @@ public class PlayerWeapon : MonoBehaviour
     private bool isShotReady = true;
     [SerializeField]
     private float shotDelay = 0.5f;
-    [SerializeField]
-    private bool showHitMarker = true;
     
     [SerializeField]
     private float reloadDelay = 0.5f;
@@ -31,6 +29,11 @@ public class PlayerWeapon : MonoBehaviour
     private bool isReloading = false;
 
     private Coroutine reloadCoroutine;
+
+    [SerializeField]
+    private GameObject projectilePrefab;
+    [SerializeField]
+    private GameObject projectileSpawnPoint;
 
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -72,22 +75,18 @@ public class PlayerWeapon : MonoBehaviour
         isShotReady = true;
     }
     
-    public void Shoot(RaycastHit2D hit) {
+    public void Shoot(Vector3 target, Collider2D collider) {
         if (reloadCoroutine != null) {
             isReloading = false;
             StopCoroutine(reloadCoroutine);
         }
-
+        
+        GameObject gameObject = Instantiate(projectilePrefab, projectileSpawnPoint.transform.position, Quaternion.identity);
+        Projectile projectile = gameObject.GetComponent<Projectile>();
+        projectile.SetDirection(target, collider);
         isShotReady = false;
         currAmmo--;
         playerUI.UpdateBulletsVisibility(currAmmo);
-        if (hit.collider) {
-            HealthManager health = hit.collider.GetComponent<HealthManager>();
-
-            if (health) {
-                health.ModifyHealth(-1);
-            }
-        }
         StartCoroutine(ShotDelayEnumerator());
     }
 
@@ -119,9 +118,5 @@ public class PlayerWeapon : MonoBehaviour
 
     public float GetMaxDistance() {
         return maxDistance;
-    }
-
-    public bool IsShowingHitMarker() {
-        return showHitMarker;
     }
 }
