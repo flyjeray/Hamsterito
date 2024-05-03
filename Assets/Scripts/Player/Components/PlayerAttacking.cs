@@ -82,7 +82,7 @@ public class PlayerAttacking : MonoBehaviour
             weapon.FaceSpriteRight(movement.IsFacingRight());
             weapon.transform.rotation = Quaternion.Euler(0, 0, resultAngle + 90);
 
-            RaycastHit2D hit = Physics2D.Raycast(aimLineStart, aimLineDir, weapon.GetMaxDistance(), ~LayerMask.GetMask("Player"));
+            RaycastHit2D hit = Physics2D.Raycast(aimLineStart, aimLineDir, weapon.GetMaxDistance(), ~LayerMask.GetMask("Player", "Ignore Raycast"));
 
             if (hit.collider && hit.collider.GetComponent<HealthManager>()) {
                 aimLine.startColor = Color.red;
