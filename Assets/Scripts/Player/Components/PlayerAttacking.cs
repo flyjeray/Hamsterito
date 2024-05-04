@@ -51,6 +51,7 @@ public class PlayerAttacking : MonoBehaviour
         }
 
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Start() {
