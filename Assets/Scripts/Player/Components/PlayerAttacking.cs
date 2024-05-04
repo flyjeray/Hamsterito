@@ -10,6 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerUI))]
 public class PlayerAttacking : MonoBehaviour
 {
+    [SerializeField]
     private bool isAiming;
     private float aimAngle = 0;
     private float aimLineWidth = .1f;
@@ -52,6 +53,10 @@ public class PlayerAttacking : MonoBehaviour
         Cursor.visible = false;
     }
 
+    void Start() {
+        playerUI.SetActive(isAiming);
+    }
+
     IEnumerator ShakeCamera(float intensity, float duration) {
         playerCamera.SetShake(intensity);
         yield return new WaitForSeconds(duration);
@@ -59,8 +64,6 @@ public class PlayerAttacking : MonoBehaviour
     }
 
     void Update() {
-        isAiming = Input.GetMouseButton(1);
-        playerUI.SetActive(isAiming);
 
         if (playerCamera != null) {
             playerCamera.UpdateAimingState(isAiming);
