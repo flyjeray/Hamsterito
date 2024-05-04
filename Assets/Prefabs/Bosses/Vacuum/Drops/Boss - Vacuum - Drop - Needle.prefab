@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7027972970183302115
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1246676381811689053, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1ea38616b6a5ce543af7062602c59c18, type: 3}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.70134
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.394308
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.35713816
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1448733549264363360, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658008708104262645, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.07189369
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658008708104262645, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.24289441
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658008708104262645, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.004558563
+      objectReference: {fileID: 0}
+    - target: {fileID: 2658008708104262645, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.019527793
+      objectReference: {fileID: 0}
+    - target: {fileID: 5157346605969753055, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: m_Name
+      value: Boss - Vacuum - Drop - Needle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146288230906537107, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
+      propertyPath: fallSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
