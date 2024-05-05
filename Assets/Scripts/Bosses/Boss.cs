@@ -4,11 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[RequireComponent(typeof(HealthManager))]
+[RequireComponent(typeof(BossHealthManager))]
 public class Boss : MonoBehaviour
 {
     private List<BossAttack> attacks;
+    private List<BossAttack> currentAttacks;
     private int lastAttackIndex;
+    private int currentPhase = 1;
+
+    protected void SelectCurrentAttacks() {
+        currentAttacks.Clear();
+        for (int i = 0; i < attacks.Count; i++) {
+            if (attacks[i].IsAvailableOnPhase(currentPhase)) {
+                currentAttacks[currentAttacks.Count] = attacks[i];
+            }
+        }
+    }
 
     public void ExecuteRandomAttack() {
         if (attacks.Count == 0) {
@@ -28,8 +39,13 @@ public class Boss : MonoBehaviour
         }
     }
 
+    public void SetPhase(int phase) {
+        currentPhase = phase;
+    }
+
     void Awake() {
         attacks = gameObject.GetComponents<BossAttack>().ToList();
+        SelectCurrentAttacks();
         ExecuteRandomAttack();
     }
 }

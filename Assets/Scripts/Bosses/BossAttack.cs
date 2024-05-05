@@ -8,6 +8,14 @@ public abstract class BossAttack : MonoBehaviour
     protected float attackStartDelay = .5f;
     [SerializeField]
     protected float attackEndDelay = .5f;
+    [SerializeField]
+    protected int minPhase = 1;
+    [SerializeField]
+    protected int maxPhase = 1;
+
+    public bool IsAvailableOnPhase(int phase) {
+        return minPhase <= phase && maxPhase >= phase;
+    }
 
     public abstract IEnumerator Action();
 
