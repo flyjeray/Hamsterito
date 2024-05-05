@@ -8,7 +8,7 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     private List<BossAttack> attacks;
-    private List<BossAttack> currentAttacks;
+    private List<BossAttack> currentAttacks = new List<BossAttack>{};
     private int lastAttackIndex;
     private int currentPhase = 1;
 
@@ -16,7 +16,7 @@ public class Boss : MonoBehaviour
         currentAttacks.Clear();
         for (int i = 0; i < attacks.Count; i++) {
             if (attacks[i].IsAvailableOnPhase(currentPhase)) {
-                currentAttacks[currentAttacks.Count] = attacks[i];
+                currentAttacks.Add(attacks[i]);
             }
         }
     }
