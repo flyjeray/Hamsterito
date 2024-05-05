@@ -7,7 +7,8 @@ public class BossVacuumAttackRainDropHealth : HealthManager
 {
     private SpriteRenderer spriteRenderer;
 
-    void Awake() {
+    protected new void Awake() {
+        base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 

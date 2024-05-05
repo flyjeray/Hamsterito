@@ -14,7 +14,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField]
     protected bool maxOnSpawn = true;
 
-    void Awake() {
+    protected void Awake() {
         if (maxOnSpawn) {
             currentHealth = maxHealth;
         }
