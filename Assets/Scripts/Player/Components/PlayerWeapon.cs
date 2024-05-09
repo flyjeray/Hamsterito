@@ -10,8 +10,6 @@ public class PlayerWeapon : MonoBehaviour
     private PlayerUI playerUI;
     [SerializeField]
     private float cameraShakeIntensity = 15;
-    [SerializeField]
-    private float maxDistance = 5;
     
     [SerializeField]
     private int currAmmo = 1;
@@ -114,9 +112,5 @@ public class PlayerWeapon : MonoBehaviour
 
     public void Reload() {
         reloadCoroutine = StartCoroutine(ReloadEnumerator());
-    }
-
-    public float GetMaxDistance() {
-        return maxDistance;
     }
 }

@@ -15,8 +15,14 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private int damage;
 
+    IEnumerator TimedDestroyEnumerator(float time) {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
+    }
+
     void Awake() {
         rb2d = GetComponent<Rigidbody2D>();
+        StartCoroutine(TimedDestroyEnumerator(3));
     }
 
     public void SetDirection(Vector3 target, Collider2D sender) {

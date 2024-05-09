@@ -18,7 +18,7 @@ public class PlayerCamera : MonoBehaviour
     private Collider2D levelCameraBounds;
 
     private float regularSize = 5;
-    private float aimingSize = 12;
+    private float aimingSize = 10;
     private bool isAiming = false;
     private float restingCameraYOffset = 1.5f;
 
