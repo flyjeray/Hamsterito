@@ -2,29 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BoxCollider2D))]
-[RequireComponent(typeof(SpriteRenderer))]
 public class BossVacuumAttackSweepObject : MonoBehaviour
 {
     [SerializeField]
-    private GameObject leftSpawnMarker;
+    private float setupSpeed = 30;
     [SerializeField]
-    private GameObject rightSpawnMarker;
+    private float attackSpeed = 10;
 
-    void Awake() {
-        GetComponent<Rigidbody2D>().gravityScale = 0;
-    }
+    private float speed;
 
-    public void Setup(bool spawnOnRightSide) {
-        GetComponent<SpriteRenderer>().flipX = spawnOnRightSide;
-        Vector3 basePosition = spawnOnRightSide ? rightSpawnMarker.transform.position : leftSpawnMarker.transform.position;
+    private bool rightSide = false;
+    
+    private Vector3 target;
+    private Vector3 right;
+    private Vector3 left;
+
+    public void Setup(bool spawnOnRightSide, Vector3 rightSpawn, Vector2 leftSpawn) {
+        rightSide = spawnOnRightSide;
+        right = rightSpawn;
+        left = leftSpawn;
+        transform.localScale = new Vector3(
+            transform.localScale.x * (rightSide ? 1 : -1),
+            transform.localScale.y,
+            transform.localScale.z
+        );
+        Vector3 basePosition = rightSide ? right : left;
         transform.position = new Vector3(
-            basePosition.x + (spawnOnRightSide ? 5000 : -5000),
+            basePosition.x + (rightSide ? 50 : -50),
             basePosition.y,
             basePosition.z
         );
     }
 
-    public void Start() {}
+    public void SetReady() {
+        speed = setupSpeed;
+        target = rightSide ? right : left;
+    }
+
+    public void Launch() {
+        speed = attackSpeed;
+        target = rightSide ? left : right;
+    }
+
+    void FixedUpdate() {
+        if (target != null) {
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.fixedDeltaTime);
+        }
+    }
 }
