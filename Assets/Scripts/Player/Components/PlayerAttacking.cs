@@ -46,7 +46,6 @@ public class PlayerAttacking : MonoBehaviour
     }
 
     void Update() {
-
         if (playerCamera != null) {
             playerCamera.UpdateAimingState(isAiming);
         }
@@ -57,11 +56,9 @@ public class PlayerAttacking : MonoBehaviour
             Vector3 cursorPointOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             weapon.FaceSpriteRight(movement.IsFacingRight());
-            weapon.transform.LookAt(new Vector3(
-                cursorPointOnScreen.x,
-                cursorPointOnScreen.y,
-                weapon.transform.position.z
-            ));
+            Vector3 dir = cursorPointOnScreen - weapon.transform.position;
+            float angle = Mathf.Atan2(dir.y,dir.x) * Mathf.Rad2Deg;
+            weapon.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
             if (Input.GetMouseButton(0) && weapon.IsAbleToShoot()) {
                 weapon.Shoot(cursorPointOnScreen, movement.GetCollider2D());
