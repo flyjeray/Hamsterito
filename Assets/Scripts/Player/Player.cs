@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerCamera))]
 [RequireComponent(typeof(PlayerAttacking))]
 [RequireComponent(typeof(PlayerUI))]
+[RequireComponent(typeof(PlayerHealthManager))]
 public class Player : MonoBehaviour {
     void Awake() {
         gameObject.tag = "Player";
