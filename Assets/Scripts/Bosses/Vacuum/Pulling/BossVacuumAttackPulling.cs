@@ -25,7 +25,6 @@ public class BossVacuumAttackPulling : BossAttack
 
         if (component) {
             component.Setup(rightSide, rightSpawnMarker.transform.position, leftSpawnMarker.transform.position);
-            yield return new WaitForSeconds(0);
             component.SetReady();
             yield return new WaitForSeconds(3f);
             component.Launch();

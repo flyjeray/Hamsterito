@@ -22,20 +22,20 @@ public class Boss : MonoBehaviour
     }
 
     public void ExecuteRandomAttack() {
-        if (attacks.Count == 0) {
+        if (currentAttacks.Count == 0) {
             return;
         }
 
-        if (attacks.Count > 1) {
+        if (currentAttacks.Count > 1) {
             System.Random rnd = new System.Random();
             int i = 0;
             while (i == lastAttackIndex) {
-                i = rnd.Next(0, attacks.Count);
+                i = rnd.Next(0, currentAttacks.Count);
             }
             lastAttackIndex = i;
-            StartCoroutine(attacks[i].Execute());
+            StartCoroutine(currentAttacks[i].Execute());
         } else {
-            StartCoroutine(attacks[0].Execute());
+            StartCoroutine(currentAttacks[0].Execute());
         }
     }
 
