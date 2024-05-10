@@ -168,6 +168,7 @@ GameObject:
   - component: {fileID: 368003670}
   - component: {fileID: 368003672}
   - component: {fileID: 368003671}
+  - component: {fileID: 368003673}
   m_Layer: 0
   m_Name: BossTest
   m_TagString: Untagged
@@ -280,6 +281,25 @@ MonoBehaviour:
   maxHealth: 5
   maxOnSpawn: 1
   phases: []
+--- !u!114 &368003673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 368003662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c44e21afd08471f870bd0a1734b2e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackStartDelay: 0.5
+  attackEndDelay: 0.5
+  minPhase: 1
+  maxPhase: 1
+  objectPrefab: {fileID: 2800581006329722040, guid: a1e377e04149744429ebc49c5634e510, type: 3}
+  leftSpawnMarker: {fileID: 935665438}
+  rightSpawnMarker: {fileID: 998131469}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -463,7 +483,7 @@ GameObject:
   m_Component:
   - component: {fileID: 935665439}
   m_Layer: 0
-  m_Name: Sweep Spawn Position 1
+  m_Name: Side Spawn Position 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -494,7 +514,7 @@ GameObject:
   m_Component:
   - component: {fileID: 998131470}
   m_Layer: 0
-  m_Name: Sweep Spawn Position 2
+  m_Name: Side Spawn Position 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
