@@ -5,7 +5,9 @@ using UnityEngine;
 public class BossVacuumAttackRain : BossAttack
 {
     [SerializeField]
-    private List<GameObject> spawnMarkers;
+    private GameObject leftSpawnMarker;
+    [SerializeField]
+    private GameObject rightSpawnMarker;
 
     [SerializeField]
     private List<GameObject> drops;
@@ -19,17 +21,15 @@ public class BossVacuumAttackRain : BossAttack
     [SerializeField]
     private float maxDelayBetweenDrops = 1f;
 
-    private int lastUsedSpawnMarker;
-
     private void CreateDrop() {
         int drop = Random.Range(0, drops.Count);
-        int marker = Random.Range(0, spawnMarkers.Count);
-        while (marker == lastUsedSpawnMarker && spawnMarkers.Count > 1) {
-            marker = Random.Range(0, spawnMarkers.Count);
-        }
-        lastUsedSpawnMarker = marker;
+        float x = Random.Range(leftSpawnMarker.transform.position.x, rightSpawnMarker.transform.position.x);
 
-        Instantiate(drops[drop], spawnMarkers[marker].transform.position, Quaternion.identity);
+        Instantiate(
+            drops[drop], 
+            new Vector3(x, leftSpawnMarker.transform.position.y, 0), 
+            Quaternion.identity
+        );
     }
 
     public override IEnumerator Action()
