@@ -20,6 +20,7 @@ public class BossVacuumAttackSmashObject : MonoBehaviour
 
     void Awake() {
         GetComponent<Rigidbody2D>().isKinematic = true;
+        gameObject.layer = 7;
     }
 
     IEnumerator TimedDestroyEnumerator(float t) {

@@ -5,6 +5,9 @@ using System.Linq;
 using UnityEngine;
 
 [RequireComponent(typeof(BossHealthManager))]
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Boss : MonoBehaviour
 {
     private List<BossAttack> attacks;
@@ -45,7 +48,9 @@ public class Boss : MonoBehaviour
 
     void Awake() {
         attacks = gameObject.GetComponents<BossAttack>().ToList();
+        gameObject.layer = 7;
         SelectCurrentAttacks();
         ExecuteRandomAttack();
+        GetComponent<Rigidbody2D>().isKinematic = true;
     }
 }

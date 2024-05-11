@@ -17,6 +17,10 @@ public class BossVacuumAttackSweepObject : MonoBehaviour
     private Vector3 right;
     private Vector3 left;
 
+    void Awake() {
+        gameObject.layer = 7;
+    }
+
     public void Setup(bool spawnOnRightSide, Vector3 rightSpawn, Vector2 leftSpawn) {
         rightSide = spawnOnRightSide;
         right = rightSpawn;
