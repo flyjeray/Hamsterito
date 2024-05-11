@@ -10,6 +10,7 @@ public class BossVacuumAttackSweepObject : MonoBehaviour
     private float attackSpeed = 10;
 
     private float speed;
+    private float speedMultiplier;
 
     private bool rightSide = false;
     
@@ -21,10 +22,16 @@ public class BossVacuumAttackSweepObject : MonoBehaviour
         gameObject.layer = 7;
     }
 
-    public void Setup(bool spawnOnRightSide, Vector3 rightSpawn, Vector2 leftSpawn) {
+    public void Setup(
+        bool spawnOnRightSide, 
+        Vector3 rightSpawn, 
+        Vector2 leftSpawn,
+        float objectSpeedMultiplier
+    ) {
         rightSide = spawnOnRightSide;
         right = rightSpawn;
         left = leftSpawn;
+        speedMultiplier = objectSpeedMultiplier;
         transform.localScale = new Vector3(
             transform.localScale.x * (rightSide ? 1 : -1),
             transform.localScale.y,
@@ -50,7 +57,7 @@ public class BossVacuumAttackSweepObject : MonoBehaviour
 
     void FixedUpdate() {
         if (target != null) {
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.fixedDeltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * speedMultiplier * Time.fixedDeltaTime);
         }
     }
 }

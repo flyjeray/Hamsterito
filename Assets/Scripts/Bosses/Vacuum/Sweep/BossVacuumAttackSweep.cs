@@ -12,8 +12,10 @@ public class BossVacuumAttackSweep : BossAttack
     [SerializeField]
     private GameObject rightSpawnMarker;
     
-    public override IEnumerator Action()
+    public override IEnumerator Action(int phase)
     {
+        PhaseParameters currPhase = FindPhase(phase);
+
         bool rightSide = Random.Range(0, 2) == 0;
         GameObject gameObject = Instantiate(
             objectPrefab, 
@@ -24,7 +26,12 @@ public class BossVacuumAttackSweep : BossAttack
         BossVacuumAttackSweepObject component = gameObject.GetComponent<BossVacuumAttackSweepObject>();
 
         if (component) {
-            component.Setup(rightSide, rightSpawnMarker.transform.position, leftSpawnMarker.transform.position);
+            component.Setup(
+                rightSide, 
+                rightSpawnMarker.transform.position, 
+                leftSpawnMarker.transform.position,
+                currPhase.objectSpeedMultiplier
+            );
             component.SetReady();
             yield return new WaitForSeconds(3f);
             component.Launch();

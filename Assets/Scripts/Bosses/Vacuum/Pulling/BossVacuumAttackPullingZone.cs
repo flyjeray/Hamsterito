@@ -8,6 +8,7 @@ public class BossVacuumAttackPullingZone : MonoBehaviour
 {
     [SerializeField]
     private float pullForce;
+    private float multiplier;
     private bool pullEnabled;
     
     private GameObject player;
@@ -16,8 +17,9 @@ public class BossVacuumAttackPullingZone : MonoBehaviour
         GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
-    public void Enable() {
+    public void Enable(float m) {
         pullEnabled = true;
+        multiplier = m;
     }
 
     void OnTriggerEnter2D (Collider2D collider) {
@@ -36,7 +38,7 @@ public class BossVacuumAttackPullingZone : MonoBehaviour
         if (player && pullEnabled) {
             bool right = player.transform.position.x > transform.position.x;
             player.transform.position = new Vector3(
-                player.transform.position.x + (right ? -1 : 1) * pullForce * Time.fixedDeltaTime,
+                player.transform.position.x + (right ? -1 : 1) * pullForce * multiplier * Time.fixedDeltaTime,
                 player.transform.position.y,
                 player.transform.position.z
             );

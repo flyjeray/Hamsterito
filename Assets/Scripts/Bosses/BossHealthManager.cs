@@ -9,7 +9,9 @@ public class BossHealthManager : HealthManager
     [Serializable]
     protected class Phase {
         public int order;
-        public int healthThreshold;
+        public int minHealthInclusive;
+        public int maxHealthInclusive;
+        public Sprite bossVisual;
     }
 
     [SerializeField]
@@ -29,12 +31,15 @@ public class BossHealthManager : HealthManager
 
     protected override void OnNonLethalDamageTaken(int damage) {
         StartCoroutine(SpriteBlinkEnumerator());
-        int order = 1;
         for (int i = 0; i < phases.Count; i++) {
-            if (currentHealth <= phases[i].healthThreshold) {
-                order = phases[i].order;
+            if (
+                currentHealth <= phases[i].maxHealthInclusive &&
+                currentHealth >= phases[i].minHealthInclusive
+            ) {
+                GetComponent<Boss>().SetPhase(phases[i].order);
+                GetComponent<Boss>().SelectCurrentAttacks();
+                GetComponent<SpriteRenderer>().sprite = phases[i].bossVisual;
             }
         }
-        GetComponent<Boss>().SetPhase(order);
     }
 }

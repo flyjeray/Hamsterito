@@ -11,6 +11,7 @@ public class BossVacuumAttackPullingObject : HealthManager
     private float setupSpeed = 30;
 
     private bool rightSide = false;
+    private float pullMultiplier;
     
     private Vector3 target;
     private Vector3 right;
@@ -21,10 +22,11 @@ public class BossVacuumAttackPullingObject : HealthManager
         GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
-    public void Setup(bool spawnOnRightSide, Vector3 rightSpawn, Vector2 leftSpawn) {
+    public void Setup(bool spawnOnRightSide, Vector3 rightSpawn, Vector2 leftSpawn, float multiplier) {
         rightSide = spawnOnRightSide;
         right = rightSpawn;
         left = leftSpawn;
+        pullMultiplier = multiplier;
         transform.localScale = new Vector3(
             transform.localScale.x * (rightSide ? -1 : 1),
             transform.localScale.y,
@@ -55,7 +57,7 @@ public class BossVacuumAttackPullingObject : HealthManager
     }
 
     public void Launch() {
-        GetComponentInChildren<BossVacuumAttackPullingZone>().Enable();
+        GetComponentInChildren<BossVacuumAttackPullingZone>().Enable(pullMultiplier);
     }
 
     void FixedUpdate() {

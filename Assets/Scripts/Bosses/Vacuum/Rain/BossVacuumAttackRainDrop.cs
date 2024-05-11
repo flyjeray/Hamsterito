@@ -13,6 +13,7 @@ public class BossVacuumAttackRainDrop : MonoBehaviour
     
     [SerializeField]
     private float fallSpeed;
+    private float speedMultiplier;
 
     void Awake() {
         GetComponent<Rigidbody2D>().gravityScale = 0;
@@ -21,7 +22,7 @@ public class BossVacuumAttackRainDrop : MonoBehaviour
     }
 
     void FixedUpdate() {
-        transform.position = new Vector2(transform.position.x, transform.position.y - fallSpeed * Time.fixedDeltaTime);
+        transform.position = new Vector2(transform.position.x, transform.position.y - fallSpeed * speedMultiplier * Time.fixedDeltaTime);
         transform.Rotate(0, 0, spinDelta);
     }
 
@@ -33,5 +34,9 @@ public class BossVacuumAttackRainDrop : MonoBehaviour
             }
         }
         Destroy(gameObject);
+    }
+
+    public void SetSpeedMultiplier(float m) {
+        speedMultiplier = m;
     }
 }

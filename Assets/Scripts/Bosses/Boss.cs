@@ -15,7 +15,7 @@ public class Boss : MonoBehaviour
     private int lastAttackIndex;
     private int currentPhase = 1;
 
-    protected void SelectCurrentAttacks() {
+    public void SelectCurrentAttacks() {
         currentAttacks.Clear();
         for (int i = 0; i < attacks.Count; i++) {
             if (attacks[i].IsAvailableOnPhase(currentPhase)) {
@@ -36,9 +36,9 @@ public class Boss : MonoBehaviour
                 i = rnd.Next(0, currentAttacks.Count);
             }
             lastAttackIndex = i;
-            StartCoroutine(currentAttacks[i].Execute());
+            StartCoroutine(currentAttacks[i].Execute(currentPhase));
         } else {
-            StartCoroutine(currentAttacks[0].Execute());
+            StartCoroutine(currentAttacks[0].Execute(currentPhase));
         }
     }
 

@@ -21,23 +21,26 @@ public class BossVacuumAttackRain : BossAttack
     [SerializeField]
     private float maxDelayBetweenDrops = 1f;
 
-    private void CreateDrop() {
+    private void CreateDrop(float speedMultiplier) {
         int drop = Random.Range(0, drops.Count);
         float x = Random.Range(leftSpawnMarker.transform.position.x, rightSpawnMarker.transform.position.x);
 
-        Instantiate(
+        GameObject newDrop = Instantiate(
             drops[drop], 
             new Vector3(x, leftSpawnMarker.transform.position.y, 0), 
             Quaternion.identity
         );
+
+        newDrop.GetComponent<BossVacuumAttackRainDrop>().SetSpeedMultiplier(speedMultiplier);
     }
 
-    public override IEnumerator Action()
+    public override IEnumerator Action(int phase)
     {
+        PhaseParameters currPhase = FindPhase(phase);
         int amount = Random.Range(minAmountOfDrops, maxAmountOfDrops);
         for (int i = 0; i < amount; i++) {
             yield return new WaitForSeconds(Random.Range(minDelayBetweenDrops, maxDelayBetweenDrops));
-            CreateDrop();
+            CreateDrop(currPhase.objectSpeedMultiplier);
         }
     }
 }

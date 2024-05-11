@@ -13,6 +13,7 @@ public class BossVacuumAttackSmashObject : MonoBehaviour
     private float attackSpeed = 65;
 
     private float speed;
+    private float speedMultiplier;
 
     private Vector3 setupPos;
     private float landingY;
@@ -28,8 +29,9 @@ public class BossVacuumAttackSmashObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Setup(Vector3 pos, float floorY, float lifetime) {
+    public void Setup(Vector3 pos, float floorY, float lifetime, float objectSpeedMultiplier) {
         setupPos = pos;
+        speedMultiplier = objectSpeedMultiplier;
         landingY = floorY;
         transform.position = new Vector3(setupPos.x, setupPos.y + 20, setupPos.z);
         StartCoroutine(TimedDestroyEnumerator(lifetime));

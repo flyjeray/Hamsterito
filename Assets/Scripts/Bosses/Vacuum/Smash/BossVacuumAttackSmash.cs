@@ -14,8 +14,9 @@ public class BossVacuumAttackSmash : BossAttack
     [SerializeField]
     private float delayBeforeLaunch = .7f;
     
-    public override IEnumerator Action()
+    public override IEnumerator Action(int phase)
     {
+        PhaseParameters currPhase = FindPhase(phase);
         Player player = FindAnyObjectByType<Player>();
         Vector3 pos = new Vector3(
             player.gameObject.transform.position.x,
@@ -35,7 +36,7 @@ public class BossVacuumAttackSmash : BossAttack
         BossVacuumAttackSmashObject component = gameObject.GetComponent<BossVacuumAttackSmashObject>();
 
         if (component) {
-            component.Setup(pos, floorHeightMarker.transform.position.y, delayBeforeLaunch + .5f);
+            component.Setup(pos, floorHeightMarker.transform.position.y, delayBeforeLaunch + .5f, currPhase.objectSpeedMultiplier);
             component.SetReady();
             yield return new WaitForSeconds(delayBeforeLaunch);
             component.Launch();
