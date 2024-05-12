@@ -14,6 +14,11 @@ public class PlayerUI : MonoBehaviour
     private Sprite bullet;
     private List<GameObject> bullets;
 
+    [SerializeField]
+    private GameObject pressToStartCanvasPrefab;
+    private Canvas pressToStartCanvas;
+    private bool levelStarted = false;
+
     void Awake() {
         canvas_go = new GameObject("PLAYER - Canvas");
         canvas = canvas_go.AddComponent<Canvas>();
@@ -22,6 +27,9 @@ public class PlayerUI : MonoBehaviour
         canvas.sortingOrder = 3;
         canvas_go.AddComponent<CanvasScaler>();
         canvas_go.transform.SetParent(transform);
+
+        pressToStartCanvas = Instantiate(pressToStartCanvasPrefab).GetComponent<Canvas>();
+        Time.timeScale = 0;
     }
 
     public void SetActive(bool isActive) {
@@ -57,6 +65,14 @@ public class PlayerUI : MonoBehaviour
     public void UpdateBulletsVisibility(int activeAmount) {
         for (int i = 0; i < bullets.Count; i++) {
             bullets[i].SetActive(activeAmount > i);
+        }
+    }
+
+    void Update() {
+        if (Input.anyKey && !levelStarted) {
+            pressToStartCanvas.enabled = false;
+            Time.timeScale = 1;
+            levelStarted = true;
         }
     }
 }

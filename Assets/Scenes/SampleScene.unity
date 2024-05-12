@@ -1125,6 +1125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 21300000, guid: bc46a11bdadcf2f4c82cacb08cdff0c1, type: 3}
+  pressToStartCanvasPrefab: {fileID: 5732114124523556052, guid: 767dfe5ef89694ef8808c415c9e5daa5, type: 3}
 --- !u!114 &1489724942
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     public Collider2D GetCollider2D() { return GetComponent<BoxCollider2D>(); }
 
-    public void DisableMovement() {
-        movable = false;
+    public void EnableMovement(bool enabled) {
+        movable = enabled;
     }
 }

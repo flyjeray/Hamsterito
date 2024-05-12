@@ -55,7 +55,7 @@ public class Boss : MonoBehaviour
         GetComponent<Rigidbody2D>().isKinematic = true;
     }
 
-    public void DisableAttacks() {
-        active = false;
+    public void EnableAttacks(bool enabled) {
+        active = enabled;
     }
 }

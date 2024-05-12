@@ -10,10 +10,10 @@ public class PlayerHealthManager : HealthManager
     protected override void OnLethalDamageTaken()
     {
         GetComponent<Animator>().SetTrigger("Death");
-        GetComponent<PlayerMovement>().DisableMovement();
+        GetComponent<PlayerMovement>().EnableMovement(false);
         Boss boss = FindAnyObjectByType<Boss>();
         if (boss) {
-            boss.DisableAttacks();
+            boss.EnableAttacks(false);
         }
     }
 
