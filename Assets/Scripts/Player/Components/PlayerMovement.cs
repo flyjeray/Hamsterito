@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     public float AimingSpeedMultiplier = 0.85f;
     public float JumpForce = 400;
 
+    private bool movable = true;
+
     void Awake() {
         playerAttacking = GetComponent<PlayerAttacking>();
         playerVisual = GetComponent<PlayerVisual>();
@@ -39,10 +41,10 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         movement = Input.GetAxisRaw("Horizontal");
         animator.SetBool("Moving", movement != 0);
-        if (!playerAttacking.IsAiming() && movement != 0) {
+        if (!playerAttacking.IsAiming() && movement != 0 && movable) {
             playerVisual.FaceSpriteRight(movement < 0);
             facingRight = movement > 0;
-        } else if (playerAttacking.IsAiming()) {
+        } else if (playerAttacking.IsAiming() && movable) {
             Vector3 cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             playerVisual.FaceSpriteRight(cursorPos.x < transform.position.x);
             facingRight = cursorPos.x >= transform.position.x;
@@ -50,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
         Vector2 direction = new Vector3(transform.position.x, box.bounds.min.y, transform.position.z) - transform.position;
         float distance = Vector2.Distance(transform.position, box.bounds.min);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, LayerMask.GetMask("Ground"));
-        if (Input.GetKeyDown(KeyCode.Space) && hit.collider) {
+        if (Input.GetKeyDown(KeyCode.Space) && hit.collider && movable) {
             rb.AddForce(Vector2.up * JumpForce);
         }
     }
@@ -58,8 +60,14 @@ public class PlayerMovement : MonoBehaviour
     public bool IsFacingRight() { return facingRight; }
 
     void FixedUpdate() {
-        rb.velocity = new Vector2(movement * Speed * (playerAttacking.IsAiming() ? AimingSpeedMultiplier : 1), rb.velocity.y);
+        if (movable) {
+            rb.velocity = new Vector2(movement * Speed * (playerAttacking.IsAiming() ? AimingSpeedMultiplier : 1), rb.velocity.y);
+        }
     }
 
     public Collider2D GetCollider2D() { return GetComponent<BoxCollider2D>(); }
+
+    public void DisableMovement() {
+        movable = false;
+    }
 }

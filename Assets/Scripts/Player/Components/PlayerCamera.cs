@@ -61,4 +61,22 @@ public class PlayerCamera : MonoBehaviour
     public void SetShake(float intensity) {
         perlin.m_AmplitudeGain = intensity;
     }
+
+    IEnumerator FadeInEnumerator(float duration) {
+        float t = 0.0f;
+        Color startColor = Camera.main.backgroundColor;
+        while (Camera.main.backgroundColor != Color.black)
+        {
+            Camera.main.backgroundColor = Color.Lerp(startColor, Color.black, t);
+            if (t < 1)
+            {
+                t += Time.deltaTime / duration;
+            }
+            yield return null;
+        }
+    }
+
+    public void StartFadeIn(float duration) {
+        StartCoroutine(FadeInEnumerator(duration));
+    }
 }

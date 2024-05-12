@@ -14,6 +14,7 @@ public class Boss : MonoBehaviour
     private List<BossAttack> currentAttacks = new List<BossAttack>{};
     private int lastAttackIndex;
     private int currentPhase = 1;
+    private bool active = true;
 
     public void SelectCurrentAttacks() {
         currentAttacks.Clear();
@@ -25,7 +26,7 @@ public class Boss : MonoBehaviour
     }
 
     public void ExecuteRandomAttack() {
-        if (currentAttacks.Count == 0) {
+        if (currentAttacks.Count == 0 || !active) {
             return;
         }
 
@@ -52,5 +53,9 @@ public class Boss : MonoBehaviour
         SelectCurrentAttacks();
         ExecuteRandomAttack();
         GetComponent<Rigidbody2D>().isKinematic = true;
+    }
+
+    public void DisableAttacks() {
+        active = false;
     }
 }

@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 1
-  maxHealth: 5
+  maxHealth: 1
   maxOnSpawn: 1
 --- !u!1 &1550617762
 GameObject:
