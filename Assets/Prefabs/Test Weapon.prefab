@@ -129,10 +129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f3d64852fcf85498d2749be7284a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraShakeIntensity: 10
+  cameraShakeIntensity: 7
   currAmmo: 1
-  maxAmmo: 6
-  shotDelay: 0.7
+  maxAmmo: 10
+  shotDelay: 0.5
   reloadDelay: 0.3
   isReloadingByOne: 1
   projectilePrefab: {fileID: 1117416064321737371, guid: 0d7e681540dc828408f21fd392adfd46, type: 3}

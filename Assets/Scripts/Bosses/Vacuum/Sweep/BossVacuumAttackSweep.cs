@@ -11,19 +11,27 @@ public class BossVacuumAttackSweep : BossAttack
     private GameObject leftSpawnMarker;
     [SerializeField]
     private GameObject rightSpawnMarker;
+
+    [SerializeField]
+    private float delayBeforeLaunch = 3f;
+
+    private float maxLifespan = 5;
+    private float checkFrequency = 0.25f;
     
     public override IEnumerator Action(int phase)
     {
         PhaseParameters currPhase = FindPhase(phase);
 
         bool rightSide = Random.Range(0, 2) == 0;
-        GameObject gameObject = Instantiate(
+        GameObject sweepGameObject = Instantiate(
             objectPrefab, 
             rightSide ? rightSpawnMarker.transform.position : leftSpawnMarker.transform.position,
             Quaternion.identity
         );
         
-        BossVacuumAttackSweepObject component = gameObject.GetComponent<BossVacuumAttackSweepObject>();
+        BossVacuumAttackSweepObject component = sweepGameObject.GetComponent<BossVacuumAttackSweepObject>();
+
+        float lifetime = 0;
 
         if (component) {
             component.Setup(
@@ -33,8 +41,15 @@ public class BossVacuumAttackSweep : BossAttack
                 currPhase.objectSpeedMultiplier
             );
             component.SetReady();
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(delayBeforeLaunch);
             component.Launch();
+            while (sweepGameObject) {
+                yield return new WaitForSeconds(checkFrequency);
+                lifetime += checkFrequency;
+                if (lifetime > maxLifespan) {
+                    Destroy(sweepGameObject);
+                }
+            }
         } else {
             yield return new WaitForSeconds(0);
         }

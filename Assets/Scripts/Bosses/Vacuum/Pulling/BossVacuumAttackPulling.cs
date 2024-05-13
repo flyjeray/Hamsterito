@@ -12,27 +12,35 @@ public class BossVacuumAttackPulling : BossAttack
     [SerializeField]
     private GameObject rightSpawnMarker;
 
+    private float maxLifespan = 5;
+    private float checkFrequency = 0.25f;
+
     public override IEnumerator Action(int phase)
     {
         PhaseParameters currPhase = FindPhase(phase);
 
         bool rightSide = Random.Range(0, 2) == 0;
-        GameObject gameObject = Instantiate(
+        GameObject pullGameObject = Instantiate(
             objectPrefab, 
             rightSide ? rightSpawnMarker.transform.position : leftSpawnMarker.transform.position,
             Quaternion.identity
         );
         
-        BossVacuumAttackPullingObject component = gameObject.GetComponent<BossVacuumAttackPullingObject>();
+        BossVacuumAttackPullingObject component = pullGameObject.GetComponent<BossVacuumAttackPullingObject>();
+        
+        float lifetime = 0;
 
         if (component) {
             component.Setup(rightSide, rightSpawnMarker.transform.position, leftSpawnMarker.transform.position, currPhase.objectSpeedMultiplier);
             component.SetReady();
             yield return new WaitForSeconds(3f);
             component.Launch();
-            yield return new WaitForSeconds(5f);
-            if (gameObject) {
-                Destroy(gameObject);
+            while (pullGameObject) {
+                yield return new WaitForSeconds(checkFrequency);
+                lifetime += checkFrequency;
+                if (lifetime > maxLifespan) {
+                    Destroy(pullGameObject);
+                }
             }
         } else {
             yield return new WaitForSeconds(0);

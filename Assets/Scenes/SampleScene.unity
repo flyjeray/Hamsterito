@@ -240,8 +240,8 @@ MonoBehaviour:
   phases:
   - minPhaseInclusive: 2
     maxPhaseInclusive: 2
-    attackStartDelay: 0.5
-    attackEndDelay: 0.5
+    attackStartDelay: 0.3
+    attackEndDelay: 0.3
     objectSpeedMultiplier: 1.3
   leftSpawnMarker: {fileID: 1861505077}
   rightSpawnMarker: {fileID: 2403029}
@@ -249,9 +249,9 @@ MonoBehaviour:
   - {fileID: 5157346605969753055, guid: bcf39dfd99c6a4745a6608f95b7d787a, type: 3}
   - {fileID: 1077709070235084044, guid: 9d915e9bfecf2354998fb58afa296125, type: 3}
   - {fileID: 2745774413041784892, guid: 794a76a1c5a6bfd40808ab9efc1c57e6, type: 3}
-  minAmountOfDrops: 5
-  maxAmountOfDrops: 10
-  minDelayBetweenDrops: 0.3
+  minAmountOfDrops: 10
+  maxAmountOfDrops: 12
+  minDelayBetweenDrops: 0.5
   maxDelayBetweenDrops: 0.7
 --- !u!114 &368003670
 MonoBehaviour:
@@ -278,16 +278,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 1
-  maxHealth: 10
+  maxHealth: 50
   maxOnSpawn: 1
   phases:
   - order: 1
-    minHealthInclusive: 5
-    maxHealthInclusive: 10
+    minHealthInclusive: 20
+    maxHealthInclusive: 50
     bossVisual: {fileID: 21300000, guid: 10b6a95c55ef740b59d6c350ff5dda0d, type: 3}
   - order: 2
     minHealthInclusive: 1
-    maxHealthInclusive: 5
+    maxHealthInclusive: 19
     bossVisual: {fileID: 21300000, guid: a57a2243b98c24f9b99a46bd15200e09, type: 3}
 --- !u!114 &368003673
 MonoBehaviour:
@@ -304,13 +304,13 @@ MonoBehaviour:
   phases:
   - minPhaseInclusive: 1
     maxPhaseInclusive: 1
-    attackStartDelay: 1
-    attackEndDelay: 2
+    attackStartDelay: 0.5
+    attackEndDelay: 0.5
     objectSpeedMultiplier: 1
   - minPhaseInclusive: 2
     maxPhaseInclusive: 2
     attackStartDelay: 0.5
-    attackEndDelay: 1
+    attackEndDelay: 0.5
     objectSpeedMultiplier: 1.3
   objectPrefab: {fileID: 2800581006329722040, guid: a1e377e04149744429ebc49c5634e510, type: 3}
   leftSpawnMarker: {fileID: 935665438}
@@ -336,7 +336,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 6262773361524836236, guid: 2fea201f598a040218666a83c5c2956e, type: 3}
   topHeightMarker: {fileID: 523468648}
   floorHeightMarker: {fileID: 301814013}
-  delayBeforeLaunch: 2
+  delayBeforeLaunch: 1.4
 --- !u!212 &368003675
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -476,8 +476,8 @@ MonoBehaviour:
   phases:
   - minPhaseInclusive: 2
     maxPhaseInclusive: 2
-    attackStartDelay: 0.2
-    attackEndDelay: 0.2
+    attackStartDelay: 0.5
+    attackEndDelay: 0.5
     objectSpeedMultiplier: 1.3
   - minPhaseInclusive: 1
     maxPhaseInclusive: 1
@@ -487,6 +487,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 5773128560248517600, guid: 4cfa4eb99586d4183a607117a0070901, type: 3}
   leftSpawnMarker: {fileID: 935665438}
   rightSpawnMarker: {fileID: 998131469}
+  delayBeforeLaunch: 1.75
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

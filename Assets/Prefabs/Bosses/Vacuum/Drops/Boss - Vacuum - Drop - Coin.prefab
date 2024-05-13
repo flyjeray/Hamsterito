@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1190372872304181104, guid: 794a76a1c5a6bfd40808ab9efc1c57e6, type: 3}
       propertyPath: fallSpeed
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2745774413041784892, guid: 794a76a1c5a6bfd40808ab9efc1c57e6, type: 3}
       propertyPath: m_Name
