@@ -15,6 +15,9 @@ public class BossVacuumAttackPulling : BossAttack
     private float maxLifespan = 5;
     private float checkFrequency = 0.25f;
 
+    [SerializeField]
+    private float delayBeforeLaunch = 2.25f;
+
     public override IEnumerator Action(int phase)
     {
         PhaseParameters currPhase = FindPhase(phase);
@@ -33,7 +36,7 @@ public class BossVacuumAttackPulling : BossAttack
         if (component) {
             component.Setup(rightSide, rightSpawnMarker.transform.position, leftSpawnMarker.transform.position, currPhase.objectSpeedMultiplier);
             component.SetReady();
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(delayBeforeLaunch);
             component.Launch();
             while (pullGameObject) {
                 yield return new WaitForSeconds(checkFrequency);
