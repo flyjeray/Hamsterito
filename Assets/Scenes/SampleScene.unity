@@ -279,16 +279,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 1
-  maxHealth: 50
+  maxHealth: 10
   maxOnSpawn: 1
   phases:
   - order: 1
-    minHealthInclusive: 20
-    maxHealthInclusive: 50
+    minHealthInclusive: 5
+    maxHealthInclusive: 10
     bossVisual: {fileID: 21300000, guid: 10b6a95c55ef740b59d6c350ff5dda0d, type: 3}
   - order: 2
     minHealthInclusive: 1
-    maxHealthInclusive: 19
+    maxHealthInclusive: 4
     bossVisual: {fileID: 21300000, guid: a57a2243b98c24f9b99a46bd15200e09, type: 3}
 --- !u!114 &368003673
 MonoBehaviour:

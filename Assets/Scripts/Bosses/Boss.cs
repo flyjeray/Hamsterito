@@ -14,8 +14,8 @@ public class Boss : MonoBehaviour
     private List<BossAttack> currentAttacks = new List<BossAttack>{};
     private int currentPhase = 1;
     private bool active = true;
-    private int[] lastAttacksBuffer = new int[] {};
-    private int attackBufferLength;
+    private int[] buffer = new int[] {};
+    private int maxBufferL;
 
     public void SelectCurrentAttacks() {
         currentAttacks.Clear();
@@ -24,8 +24,8 @@ public class Boss : MonoBehaviour
                 currentAttacks.Add(attacks[i]);
             }
         }
-        attackBufferLength = Math.Clamp(currentAttacks.Count - 1, 1, 3);
-        lastAttacksBuffer = new int[attackBufferLength];
+        maxBufferL = Math.Clamp(currentAttacks.Count - 1, 1, 3);
+        buffer = new int[maxBufferL];
     }
 
     public void ExecuteRandomAttack() {
@@ -36,17 +36,19 @@ public class Boss : MonoBehaviour
         if (currentAttacks.Count > 1) {
             System.Random rnd = new System.Random();
             int i = 0;
-            while (lastAttacksBuffer.Contains(i)) {
+            while (buffer.Contains(i)) {
                 i = rnd.Next(0, currentAttacks.Count);
             }
-            
-            if (lastAttacksBuffer.Length >= attackBufferLength) {
-                int[] newArr = new int[lastAttacksBuffer.Length];
-                Array.Copy(lastAttacksBuffer, 1, newArr, 0, lastAttacksBuffer.Length - 1);
-                newArr[lastAttacksBuffer.Length - 1] = i;
-                lastAttacksBuffer = newArr;
+
+            if (maxBufferL == 1) {
+                buffer = new int[] {i};
+            } else if (buffer.Length >= maxBufferL) {
+                for (int y = 0; y < buffer.Length - 1; y++) {
+                    buffer[y] = buffer[y + 1];
+                }
+                buffer[buffer.Length - 1] = i;
             } else {
-                lastAttacksBuffer[lastAttacksBuffer.Length] = i;
+                buffer[buffer.Length] = i;
             }
 
             StartCoroutine(currentAttacks[i].Execute(currentPhase));
