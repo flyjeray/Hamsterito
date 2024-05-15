@@ -13,7 +13,7 @@ public class PlayerHealthManager : HealthManager
         GetComponent<PlayerMovement>().EnableMovement(false);
         Boss boss = FindAnyObjectByType<Boss>();
         if (boss) {
-            boss.EnableAttacks(false);
+            boss.Enable(false);
         }
     }
 
