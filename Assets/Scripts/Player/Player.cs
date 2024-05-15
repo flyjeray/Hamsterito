@@ -9,6 +9,12 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerUI))]
 [RequireComponent(typeof(PlayerHealthManager))]
 public class Player : MonoBehaviour {
+    public bool active = true;
+
+    public bool IsActive() { return active; }
+
+    public void SetActive(bool value) { active = value; }
+    
     void Awake() {
         gameObject.tag = "Player";
         gameObject.name = "PLAYER";

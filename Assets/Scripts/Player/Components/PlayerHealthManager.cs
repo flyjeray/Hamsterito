@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(Player))]
 public class PlayerHealthManager : HealthManager
 {
     protected override void OnLethalDamageTaken()
     {
         GetComponent<Animator>().SetTrigger("Death");
-        GetComponent<PlayerMovement>().EnableMovement(false);
+        GetComponent<Player>().SetActive(false);
+        GetComponent<PlayerCamera>().ZoomOnDeath();
         Boss boss = FindAnyObjectByType<Boss>();
         if (boss) {
             boss.Enable(false);

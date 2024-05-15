@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PlayerAttacking playerAttacking;
+    private Player player;
     private PlayerVisual playerVisual;
     private BoxCollider2D box;
     private Animator animator;
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     void Awake() {
         playerAttacking = GetComponent<PlayerAttacking>();
         playerVisual = GetComponent<PlayerVisual>();
+        player = GetComponent<Player>();
 
         rb = GetComponent<Rigidbody2D>();
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
@@ -60,8 +62,11 @@ public class PlayerMovement : MonoBehaviour
     public bool IsFacingRight() { return facingRight; }
 
     void FixedUpdate() {
-        if (movable) {
+        if (player.IsActive()) {
             rb.velocity = new Vector2(movement * Speed * (playerAttacking.IsAiming() ? AimingSpeedMultiplier : 1), rb.velocity.y);
+        } else {
+            rb.isKinematic = true;
+            rb.velocity = new Vector2(0, 0);
         }
     }
 

@@ -316,6 +316,7 @@ MonoBehaviour:
   objectPrefab: {fileID: 2800581006329722040, guid: a1e377e04149744429ebc49c5634e510, type: 3}
   leftSpawnMarker: {fileID: 935665438}
   rightSpawnMarker: {fileID: 998131469}
+  delayBeforeLaunch: 2.25
 --- !u!114 &368003674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -541,7 +542,7 @@ Camera:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1042,6 +1043,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   levelCameraBounds: {fileID: 757837462}
+  regularSize: 5
+  aimingSize: 10
 --- !u!114 &1489724937
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1193,6 +1196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b81693e7f36bdfd4f998f2ab33007f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 1
 --- !u!114 &1489724941
 MonoBehaviour:
   m_ObjectHideFlags: 0

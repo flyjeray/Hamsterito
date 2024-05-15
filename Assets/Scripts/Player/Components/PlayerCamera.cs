@@ -14,13 +14,17 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField]
     private NoiseSettings noiseProfile;
     private PlayerAttacking playerAttacking;
+    private Player player;
     [SerializeField]
     private Collider2D levelCameraBounds;
 
+    [SerializeField]
     private float regularSize = 5;
+    [SerializeField]
     private float aimingSize = 10;
     private bool isAiming = false;
     private float restingCameraYOffset = 1.5f;
+    private bool disableAimingZooming = false;
 
     void Awake() {
         Camera.main.gameObject.TryGetComponent<CinemachineBrain>(out var brain);
@@ -46,37 +50,26 @@ public class PlayerCamera : MonoBehaviour
         virtualCamera.m_Lens.OrthographicSize = regularSize;
 
         playerAttacking = GetComponent<PlayerAttacking>();
+        player = GetComponent<Player>();
     }
 
     public void UpdateAimingState(bool _isAiming) {
-        isAiming = _isAiming;
-        virtualCamera.m_Lens.OrthographicSize = isAiming ? aimingSize : regularSize;
-        transposer.m_FollowOffset = new Vector3(
-            0,
-            playerAttacking.IsAiming() ? 0 : restingCameraYOffset,
-            transposer.m_FollowOffset.z
-        );
+        if (player.IsActive()) {
+            isAiming = _isAiming;
+            virtualCamera.m_Lens.OrthographicSize = isAiming ? aimingSize : regularSize;
+            transposer.m_FollowOffset = new Vector3(
+                0,
+                playerAttacking.IsAiming() ? 0 : restingCameraYOffset,
+                transposer.m_FollowOffset.z
+            );
+        }
     }
 
     public void SetShake(float intensity) {
         perlin.m_AmplitudeGain = intensity;
     }
 
-    IEnumerator FadeInEnumerator(float duration) {
-        float t = 0.0f;
-        Color startColor = Camera.main.backgroundColor;
-        while (Camera.main.backgroundColor != Color.black)
-        {
-            Camera.main.backgroundColor = Color.Lerp(startColor, Color.black, t);
-            if (t < 1)
-            {
-                t += Time.deltaTime / duration;
-            }
-            yield return null;
-        }
-    }
-
-    public void StartFadeIn(float duration) {
-        StartCoroutine(FadeInEnumerator(duration));
+    public void ZoomOnDeath() {
+        virtualCamera.m_Lens.OrthographicSize = 1;
     }
 }

@@ -16,6 +16,7 @@ public class PlayerAttacking : MonoBehaviour
     private PlayerCamera playerCamera;
     private PlayerMovement movement;
     private PlayerUI playerUI;
+    private Player player;
 
     public GameObject weaponPrefab;
     private PlayerWeapon weapon;
@@ -24,6 +25,7 @@ public class PlayerAttacking : MonoBehaviour
         playerCamera = GetComponent<PlayerCamera>();
         movement = GetComponent<PlayerMovement>();
         playerUI = GetComponent<PlayerUI>();
+        player = GetComponent<Player>();
 
         GameObject weapon_go = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
         weapon_go.transform.SetParent(transform);
@@ -52,7 +54,7 @@ public class PlayerAttacking : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && weapon && !weapon.IsReloading() && weapon.IsReloadNeeded()) {
             weapon.Reload();
-        } else if (isAiming && weapon) {
+        } else if (isAiming && weapon && player.IsActive()) {
             Vector3 cursorPointOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             weapon.FaceSpriteRight(movement.IsFacingRight());
