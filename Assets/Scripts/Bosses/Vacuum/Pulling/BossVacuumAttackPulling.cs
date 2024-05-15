@@ -33,7 +33,7 @@ public class BossVacuumAttackPulling : BossAttack
         if (component) {
             component.Setup(rightSide, rightSpawnMarker.transform.position, leftSpawnMarker.transform.position, currPhase.objectSpeedMultiplier);
             component.SetReady();
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(1.5f);
             component.Launch();
             while (pullGameObject) {
                 yield return new WaitForSeconds(checkFrequency);
