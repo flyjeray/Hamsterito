@@ -58,7 +58,10 @@ public class Boss : MonoBehaviour
     }
 
     public void SetPhase(int phase) {
-        currentPhase = phase;
+        if (phase != currentPhase) {
+            currentPhase = phase;
+            SelectCurrentAttacks();
+        }
     }
 
     void Awake() {

@@ -37,7 +37,6 @@ public class BossHealthManager : HealthManager
                 currentHealth >= phases[i].minHealthInclusive
             ) {
                 GetComponent<Boss>().SetPhase(phases[i].order);
-                GetComponent<Boss>().SelectCurrentAttacks();
                 GetComponent<SpriteRenderer>().sprite = phases[i].bossVisual;
             }
         }
