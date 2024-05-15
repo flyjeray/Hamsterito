@@ -70,6 +70,9 @@ public class PlayerCamera : MonoBehaviour
     }
 
     public void ZoomOnDeath() {
+        transposer.m_XDamping = 0;
+        transposer.m_YDamping = 0;
+        transposer.m_ZDamping = 0;
         virtualCamera.m_Lens.OrthographicSize = 1;
     }
 }
