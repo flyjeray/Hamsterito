@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class BossVacuumAttackSmashObject : MonoBehaviour
+public class BossVacuumAttackSmashObject : BossAttackObject
 {
     [SerializeField]
     private float setupSpeed = 30;

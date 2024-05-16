@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BossVacuumAttackRainDropHealth))]
-public class BossVacuumAttackRainDrop : MonoBehaviour
+public class BossVacuumAttackRainDrop : BossAttackObject
 {
     private float spinDelta;
     

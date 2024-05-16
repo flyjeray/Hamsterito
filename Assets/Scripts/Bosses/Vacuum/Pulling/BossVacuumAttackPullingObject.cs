@@ -5,7 +5,8 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class BossVacuumAttackPullingObject : HealthManager
+[RequireComponent(typeof(HealthManager))]
+public class BossVacuumAttackPullingObject : BossAttackObject
 {
     [SerializeField]
     private float setupSpeed = 30;
@@ -17,8 +18,7 @@ public class BossVacuumAttackPullingObject : HealthManager
     private Vector3 right;
     private Vector3 left;
 
-    protected new void Awake() {
-        base.Awake();
+    void Awake() {
         GetComponent<Rigidbody2D>().isKinematic = true;
     }
 

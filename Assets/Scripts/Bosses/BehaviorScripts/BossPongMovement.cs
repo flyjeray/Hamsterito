@@ -33,10 +33,12 @@ public class BossPongMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        transform.position = Vector3.MoveTowards(
-            transform.position,
-            movingToX ? positionX.transform.position : positionY.transform.position,
-            speed * Time.fixedDeltaTime
-        );
+        if (GetComponent<Boss>().IsEnabled()) {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                movingToX ? positionX.transform.position : positionY.transform.position,
+                speed * Time.fixedDeltaTime
+            );
+        }
     }
 }

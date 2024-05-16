@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossVacuumAttackSweepObject : MonoBehaviour
+public class BossVacuumAttackSweepObject : BossAttackObject
 {
     [SerializeField]
     private float setupSpeed = 30;

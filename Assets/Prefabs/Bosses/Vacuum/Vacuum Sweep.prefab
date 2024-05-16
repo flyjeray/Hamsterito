@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setupSpeed: 40
-  attackSpeed: 7
+  attackSpeed: 9
 --- !u!1 &6202516662665327368
 GameObject:
   m_ObjectHideFlags: 0

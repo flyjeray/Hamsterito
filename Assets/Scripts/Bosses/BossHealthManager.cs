@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Boss))]
+[RequireComponent(typeof(Animator))]
 public class BossHealthManager : HealthManager
 {
     [Serializable]
@@ -11,8 +12,11 @@ public class BossHealthManager : HealthManager
         public int order;
         public int minHealthInclusive;
         public int maxHealthInclusive;
-        public Sprite bossVisual;
+        public string animationName;
     }
+
+    [SerializeField]
+    private string deathAnimationName;
 
     [SerializeField]
     protected List<Phase> phases;
@@ -29,16 +33,42 @@ public class BossHealthManager : HealthManager
         yield return new WaitForSeconds(0);
     }
 
-    protected override void OnNonLethalDamageTaken(int damage) {
-        StartCoroutine(SpriteBlinkEnumerator());
+    private void UpdatePhase() {
         for (int i = 0; i < phases.Count; i++) {
             if (
                 currentHealth <= phases[i].maxHealthInclusive &&
                 currentHealth >= phases[i].minHealthInclusive
             ) {
                 GetComponent<Boss>().SetPhase(phases[i].order);
-                GetComponent<SpriteRenderer>().sprite = phases[i].bossVisual;
+                GetComponent<Animator>().Play(phases[i].animationName);
             }
         }
+    }
+
+    protected override void OnNonLethalDamageTaken(int damage) {
+        StartCoroutine(SpriteBlinkEnumerator());
+        UpdatePhase();
+    }
+
+    void Start() {
+        UpdatePhase();
+    }
+
+    void DestroyAllObjects() {
+        BossAttackObject[] objects = FindObjectsByType<BossAttackObject>(FindObjectsSortMode.None);
+
+        for (int i = 0; i < objects.Length; i++) {
+            Destroy(objects[i].gameObject);
+        }
+    }
+
+    protected override void OnLethalDamageTaken() {
+        DestroyAllObjects();
+        GetComponent<Boss>().Enable(false);
+        GetComponent<Animator>().Play(deathAnimationName);
+    }
+
+    public void Destroy() {
+        Destroy(gameObject);
     }
 }
