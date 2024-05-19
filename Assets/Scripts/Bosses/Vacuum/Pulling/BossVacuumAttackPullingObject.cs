@@ -58,6 +58,7 @@ public class BossVacuumAttackPullingObject : BossAttackObject
 
     public void Launch() {
         GetComponentInChildren<BossVacuumAttackPullingZone>().Enable(pullMultiplier);
+        GetComponent<Animator>().SetTrigger("Launched");
     }
 
     void FixedUpdate() {

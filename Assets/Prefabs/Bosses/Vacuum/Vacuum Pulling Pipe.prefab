@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1813313081147304860}
   - component: {fileID: 488509492438940508}
   - component: {fileID: 9093069665372721927}
+  - component: {fileID: 6123273046016926498}
   m_Layer: 0
   m_Name: Vacuum Pulling Pipe
   m_TagString: Untagged
@@ -137,6 +138,27 @@ MonoBehaviour:
   currentHealth: 1
   maxHealth: 3
   maxOnSpawn: 1
+--- !u!95 &6123273046016926498
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800581006329722040}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fddad48f8638045b594d76dabf758d67, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5056912424845350428
 GameObject:
   m_ObjectHideFlags: 0

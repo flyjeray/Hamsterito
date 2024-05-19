@@ -53,6 +53,7 @@ public class BossVacuumAttackSweepObject : BossAttackObject
     public void Launch() {
         speed = attackSpeed;
         target = rightSide ? left : right;
+        GetComponent<Animator>().SetTrigger("Launched");
     }
 
     void FixedUpdate() {
