@@ -39,7 +39,9 @@ public class BossVacuumAttackSmash : BossAttack
             component.Setup(pos, floorHeightMarker.transform.position.y, delayBeforeLaunch + .5f, currPhase.objectSpeedMultiplier);
             component.SetReady();
             yield return new WaitForSeconds(delayBeforeLaunch);
-            component.Launch();
+            if (component) {
+                component.Launch();
+            }
         } else {
             yield return new WaitForSeconds(0);
         }

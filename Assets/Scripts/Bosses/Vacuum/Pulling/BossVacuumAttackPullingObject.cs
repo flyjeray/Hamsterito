@@ -5,7 +5,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(HealthManager))]
+[RequireComponent(typeof(BossAttackObjectHealthManager))]
 public class BossVacuumAttackPullingObject : BossAttackObject
 {
     [SerializeField]

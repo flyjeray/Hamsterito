@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2881923510882606745}
   - component: {fileID: 1813313081147304860}
   - component: {fileID: 488509492438940508}
-  - component: {fileID: 9093069665372721927}
   - component: {fileID: 6123273046016926498}
+  - component: {fileID: 2587149499021218639}
   m_Layer: 0
   m_Name: Vacuum Pulling Pipe
   m_TagString: Untagged
@@ -123,21 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   setupSpeed: 40
---- !u!114 &9093069665372721927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2800581006329722040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e98e5bf881aaa54eb6c0c0b489436f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentHealth: 1
-  maxHealth: 3
-  maxOnSpawn: 1
 --- !u!95 &6123273046016926498
 Animator:
   serializedVersion: 5
@@ -159,6 +144,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2587149499021218639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2800581006329722040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e106e400463a949aca3c3efff18d17af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 1
+  maxHealth: 3
+  maxOnSpawn: 1
+  spriteRenderer: {fileID: 1024543828813419651}
 --- !u!1 &5056912424845350428
 GameObject:
   m_ObjectHideFlags: 0

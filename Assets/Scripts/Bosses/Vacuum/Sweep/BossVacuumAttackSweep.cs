@@ -42,7 +42,9 @@ public class BossVacuumAttackSweep : BossAttack
             );
             component.SetReady();
             yield return new WaitForSeconds(delayBeforeLaunch);
-            component.Launch();
+            if (component) {
+                component.Launch();
+            }
             while (sweepGameObject) {
                 yield return new WaitForSeconds(checkFrequency);
                 lifetime += checkFrequency;

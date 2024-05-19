@@ -388,6 +388,7 @@ MonoBehaviour:
   currentHealth: 1
   maxHealth: 3
   maxOnSpawn: 1
+  spriteRenderer: {fileID: 9203977009455110490}
 --- !u!50 &7104619828279988664
 Rigidbody2D:
   serializedVersion: 4

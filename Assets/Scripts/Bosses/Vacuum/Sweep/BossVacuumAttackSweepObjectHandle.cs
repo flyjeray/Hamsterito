@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class BossVacuumAttackSweepObjectHandle : HealthManager
+public class BossVacuumAttackSweepObjectHandle : BossAttackObjectHealthManager
 {
     protected new void Awake() {
         base.Awake();
