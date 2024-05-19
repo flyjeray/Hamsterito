@@ -21,6 +21,9 @@ public class PlayerAttacking : MonoBehaviour
     public GameObject weaponPrefab;
     private PlayerWeapon weapon;
 
+    [SerializeField]
+    private Texture2D customCursor;
+ 
     void Awake() {
         playerCamera = GetComponent<PlayerCamera>();
         movement = GetComponent<PlayerMovement>();
@@ -34,6 +37,10 @@ public class PlayerAttacking : MonoBehaviour
 
         if (maxAmmoOnSpawn && weapon) {
             weapon.ReloadInstantly();
+        }
+
+        if (customCursor) {
+            Cursor.SetCursor(customCursor, Vector2.zero, CursorMode.Auto);
         }
     }
 
