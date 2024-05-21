@@ -244,7 +244,7 @@ MonoBehaviour:
     maxPhaseInclusive: 2
     attackStartDelay: 0.3
     attackEndDelay: 0.3
-    objectSpeedMultiplier: 1.3
+    objectSpeedMultiplier: 1.5
   leftSpawnMarker: {fileID: 1861505077}
   rightSpawnMarker: {fileID: 2403029}
   drops:
@@ -267,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3c71fa95d5d6b4e951db7905e4b8e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backgroundMusic: {fileID: 8300000, guid: 9d561814853a049f8b01614f436ce8ac, type: 3}
 --- !u!114 &368003672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,17 +281,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 1
-  maxHealth: 10
+  maxHealth: 50
   maxOnSpawn: 1
   deathAnimationName: BossVacuumDeathAnim
   phases:
   - order: 1
-    minHealthInclusive: 2
-    maxHealthInclusive: 10
+    minHealthInclusive: 20
+    maxHealthInclusive: 50
     animationName: BossVacuumPhaseOne
   - order: 2
     minHealthInclusive: 1
-    maxHealthInclusive: 1
+    maxHealthInclusive: 19
     animationName: BossVacuumPhaseTwo
 --- !u!114 &368003673
 MonoBehaviour:
@@ -309,12 +310,12 @@ MonoBehaviour:
     maxPhaseInclusive: 1
     attackStartDelay: 0.5
     attackEndDelay: 0.5
-    objectSpeedMultiplier: 1
+    objectSpeedMultiplier: 0.85
   - minPhaseInclusive: 2
     maxPhaseInclusive: 2
-    attackStartDelay: 0.5
-    attackEndDelay: 0.5
-    objectSpeedMultiplier: 1.3
+    attackStartDelay: 0.3
+    attackEndDelay: 0.3
+    objectSpeedMultiplier: 1
   objectPrefab: {fileID: 2800581006329722040, guid: a1e377e04149744429ebc49c5634e510, type: 3}
   leftSpawnMarker: {fileID: 935665438}
   rightSpawnMarker: {fileID: 998131469}
@@ -480,14 +481,14 @@ MonoBehaviour:
   phases:
   - minPhaseInclusive: 2
     maxPhaseInclusive: 2
-    attackStartDelay: 0.5
-    attackEndDelay: 0.5
-    objectSpeedMultiplier: 1.3
+    attackStartDelay: 0.3
+    attackEndDelay: 0.3
+    objectSpeedMultiplier: 1
   - minPhaseInclusive: 1
     maxPhaseInclusive: 1
     attackStartDelay: 0.5
     attackEndDelay: 0.5
-    objectSpeedMultiplier: 1
+    objectSpeedMultiplier: 0.85
   objectPrefab: {fileID: 5773128560248517600, guid: 4cfa4eb99586d4183a607117a0070901, type: 3}
   leftSpawnMarker: {fileID: 935665438}
   rightSpawnMarker: {fileID: 998131469}

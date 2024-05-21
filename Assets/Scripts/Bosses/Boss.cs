@@ -13,9 +13,13 @@ public class Boss : MonoBehaviour
     private List<BossAttack> attacks;
     private List<BossAttack> currentAttacks = new List<BossAttack>{};
     private int currentPhase = 1;
-    private bool active = true;
+    private bool active = false;
     private int[] buffer = new int[] {};
     private int maxBufferL;
+
+    [SerializeField]
+    private AudioClip backgroundMusic;
+    private AudioSource backgroundMusicSource;
 
     public void SelectCurrentAttacks() {
         currentAttacks.Clear();
@@ -64,16 +68,35 @@ public class Boss : MonoBehaviour
         }
     }
 
+    private void SetupMusic() {
+        if (backgroundMusic) {
+            GameObject gameObject = new GameObject("MUSIC SOURCE - " + name);
+            backgroundMusicSource = gameObject.AddComponent<AudioSource>();
+            gameObject.transform.SetParent(transform);
+            backgroundMusicSource.loop = true;
+            backgroundMusicSource.clip = backgroundMusic;
+        }
+    }
+
     void Awake() {
         attacks = gameObject.GetComponents<BossAttack>().ToList();
         gameObject.layer = 7;
         SelectCurrentAttacks();
-        ExecuteRandomAttack();
         GetComponent<Rigidbody2D>().isKinematic = true;
+        SetupMusic();
     }
 
     public void Enable(bool enabled) {
         active = enabled;
+
+        if (backgroundMusicSource) {
+            if (enabled) {
+                ExecuteRandomAttack();
+                backgroundMusicSource.Play();
+            } else {
+                backgroundMusicSource.Stop();
+            }
+        }
     }
 
     public bool IsEnabled() { return active; }
