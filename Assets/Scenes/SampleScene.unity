@@ -310,12 +310,12 @@ MonoBehaviour:
     maxPhaseInclusive: 1
     attackStartDelay: 0.5
     attackEndDelay: 0.5
-    objectSpeedMultiplier: 0.9
+    objectSpeedMultiplier: 0.7
   - minPhaseInclusive: 2
     maxPhaseInclusive: 2
     attackStartDelay: 0.3
     attackEndDelay: 0.3
-    objectSpeedMultiplier: 1.1
+    objectSpeedMultiplier: 0.9
   objectPrefab: {fileID: 2800581006329722040, guid: a1e377e04149744429ebc49c5634e510, type: 3}
   leftSpawnMarker: {fileID: 935665438}
   rightSpawnMarker: {fileID: 998131469}
@@ -592,7 +592,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.6738534
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   noiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   levelCameraBounds: {fileID: 757837462}
-  regularSize: 5
+  regularSize: 2
   aimingSize: 10
 --- !u!114 &1489724937
 MonoBehaviour:
