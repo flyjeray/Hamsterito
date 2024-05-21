@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerAttacking))]
 [RequireComponent(typeof(PlayerUI))]
 [RequireComponent(typeof(PlayerHealthManager))]
+[RequireComponent(typeof(PlayerAudio))]
 public class Player : MonoBehaviour {
     public bool active = true;
 

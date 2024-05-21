@@ -16,6 +16,7 @@ public class PlayerAttacking : MonoBehaviour
     private PlayerCamera playerCamera;
     private PlayerMovement movement;
     private PlayerUI playerUI;
+    private PlayerAudio playerAudio;
     private Player player;
 
     public GameObject weaponPrefab;
@@ -28,12 +29,13 @@ public class PlayerAttacking : MonoBehaviour
         playerCamera = GetComponent<PlayerCamera>();
         movement = GetComponent<PlayerMovement>();
         playerUI = GetComponent<PlayerUI>();
+        playerAudio = GetComponent<PlayerAudio>();
         player = GetComponent<Player>();
 
         GameObject weapon_go = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
         weapon_go.transform.SetParent(transform);
         weapon = weapon_go.GetComponent<PlayerWeapon>();
-        weapon.BindUI(playerUI);
+        weapon.BindComponents(playerUI, playerAudio);
 
         if (maxAmmoOnSpawn && weapon) {
             weapon.ReloadInstantly();

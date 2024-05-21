@@ -310,12 +310,12 @@ MonoBehaviour:
     maxPhaseInclusive: 1
     attackStartDelay: 0.5
     attackEndDelay: 0.5
-    objectSpeedMultiplier: 0.85
+    objectSpeedMultiplier: 0.9
   - minPhaseInclusive: 2
     maxPhaseInclusive: 2
     attackStartDelay: 0.3
     attackEndDelay: 0.3
-    objectSpeedMultiplier: 1
+    objectSpeedMultiplier: 1.1
   objectPrefab: {fileID: 2800581006329722040, guid: a1e377e04149744429ebc49c5634e510, type: 3}
   leftSpawnMarker: {fileID: 935665438}
   rightSpawnMarker: {fileID: 998131469}
@@ -483,12 +483,12 @@ MonoBehaviour:
     maxPhaseInclusive: 2
     attackStartDelay: 0.3
     attackEndDelay: 0.3
-    objectSpeedMultiplier: 1
+    objectSpeedMultiplier: 1.1
   - minPhaseInclusive: 1
     maxPhaseInclusive: 1
     attackStartDelay: 0.5
     attackEndDelay: 0.5
-    objectSpeedMultiplier: 0.85
+    objectSpeedMultiplier: 1
   objectPrefab: {fileID: 5773128560248517600, guid: 4cfa4eb99586d4183a607117a0070901, type: 3}
   leftSpawnMarker: {fileID: 935665438}
   rightSpawnMarker: {fileID: 998131469}
@@ -989,6 +989,7 @@ GameObject:
   - component: {fileID: 1489724941}
   - component: {fileID: 1489724940}
   - component: {fileID: 1489724942}
+  - component: {fileID: 1489724943}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1360,6 +1361,20 @@ MonoBehaviour:
   currentHealth: 1
   maxHealth: 1
   maxOnSpawn: 1
+--- !u!114 &1489724943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1489724928}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9727208fa988c4ccc9e8076a71264adf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shotSound: {fileID: 8300000, guid: f95975b8e588c4776ab13708f8f4790f, type: 3}
+  reloadSound: {fileID: 8300000, guid: 079893ec73fa94151b480e918b4a2271, type: 3}
 --- !u!1 &1550617762
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class PlayerWeapon : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private PlayerUI playerUI;
+    private PlayerAudio playerAudio;
     [SerializeField]
     private float cameraShakeIntensity = 15;
     
@@ -63,8 +64,9 @@ public class PlayerWeapon : MonoBehaviour
         return cameraShakeIntensity;
     }
 
-    public void BindUI(PlayerUI ui) {
+    public void BindComponents(PlayerUI ui, PlayerAudio audio) {
         playerUI = ui;
+        playerAudio = audio;
     }
 
     IEnumerator ShotDelayEnumerator()
@@ -85,6 +87,7 @@ public class PlayerWeapon : MonoBehaviour
         isShotReady = false;
         currAmmo--;
         playerUI.UpdateBulletsVisibility(currAmmo);
+        playerAudio.PlayShot();
         StartCoroutine(ShotDelayEnumerator());
     }
 
@@ -97,6 +100,7 @@ public class PlayerWeapon : MonoBehaviour
             } else {
                 currAmmo = maxAmmo;
             }
+            playerAudio.PlayReload();
             playerUI.UpdateBulletsVisibility(currAmmo);
         }
         isReloading = false;
