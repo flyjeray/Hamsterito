@@ -293,6 +293,7 @@ MonoBehaviour:
     minHealthInclusive: 1
     maxHealthInclusive: 19
     animationName: BossVacuumPhaseTwo
+  relatedLevel: 1
 --- !u!114 &368003673
 MonoBehaviour:
   m_ObjectHideFlags: 0

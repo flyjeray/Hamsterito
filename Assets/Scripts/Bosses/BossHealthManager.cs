@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Boss))]
 [RequireComponent(typeof(Animator))]
@@ -20,6 +21,9 @@ public class BossHealthManager : HealthManager
 
     [SerializeField]
     protected List<Phase> phases;
+
+    [SerializeField]
+    private float relatedLevel;
 
     private IEnumerator SpriteBlinkEnumerator() {
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
@@ -64,11 +68,17 @@ public class BossHealthManager : HealthManager
 
     protected override void OnLethalDamageTaken() {
         DestroyAllObjects();
+        FindObjectOfType<Player>().SetActive(false);
         GetComponent<Boss>().Enable(false);
         GetComponent<Animator>().Play(deathAnimationName);
     }
 
-    public void Destroy() {
-        Destroy(gameObject);
+    public void Hide() {
+        GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    public void BackToMenu() {
+        PlayerPrefs.SetInt("LVL" + relatedLevel, 1);
+        SceneManager.LoadScene("LevelSelectScreen");
     }
 }
