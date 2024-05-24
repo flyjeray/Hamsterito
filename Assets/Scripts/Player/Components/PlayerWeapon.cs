@@ -36,7 +36,7 @@ public class PlayerWeapon : MonoBehaviour
 
     void Awake() {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.sortingOrder = 1;
+        spriteRenderer.sortingOrder = 2;
     }
 
     void Start() {
