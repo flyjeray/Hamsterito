@@ -890,7 +890,11 @@ MonoBehaviour:
   currentHealth: 1
   maxHealth: 5
   maxOnSpawn: 1
-  phases: []
+  phases:
+  - order: 0
+    minHealthInclusive: 0
+    maxHealthInclusive: 0
+    animationName: 
   relatedLevel: 2
 --- !u!95 &860965150
 Animator:
