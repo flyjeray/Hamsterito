@@ -821,7 +821,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
 --- !u!212 &860965148
 SpriteRenderer:
@@ -890,7 +890,6 @@ MonoBehaviour:
   currentHealth: 1
   maxHealth: 5
   maxOnSpawn: 1
-  deathAnimationName: 
   phases: []
   relatedLevel: 2
 --- !u!95 &860965150
