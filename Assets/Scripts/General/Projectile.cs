@@ -22,6 +22,7 @@ public class Projectile : MonoBehaviour
 
     void Awake() {
         rb2d = GetComponent<Rigidbody2D>();
+        gameObject.layer = 8;
         StartCoroutine(TimedDestroyEnumerator(3));
     }
 
