@@ -283,7 +283,6 @@ MonoBehaviour:
   currentHealth: 1
   maxHealth: 50
   maxOnSpawn: 1
-  deathAnimationName: BossVacuumDeathAnim
   phases:
   - order: 1
     minHealthInclusive: 20

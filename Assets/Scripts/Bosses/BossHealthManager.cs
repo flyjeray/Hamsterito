@@ -17,9 +17,6 @@ public class BossHealthManager : HealthManager
     }
 
     [SerializeField]
-    private string deathAnimationName;
-
-    [SerializeField]
     protected List<Phase> phases;
 
     [SerializeField]
@@ -70,7 +67,7 @@ public class BossHealthManager : HealthManager
         DestroyAllObjects();
         FindObjectOfType<Player>().SetActive(false);
         GetComponent<Boss>().Enable(false);
-        GetComponent<Animator>().Play(deathAnimationName);
+        GetComponent<Animator>().SetTrigger("Death");
     }
 
     public void Hide() {
