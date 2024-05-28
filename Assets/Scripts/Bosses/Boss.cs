@@ -89,13 +89,23 @@ public class Boss : MonoBehaviour
     public void Enable(bool enabled) {
         active = enabled;
 
-        if (backgroundMusicSource) {
-            if (enabled) {
-                ExecuteRandomAttack();
+        if (enabled) {
+            ExecuteRandomAttack();
+            if (backgroundMusicSource) {
                 backgroundMusicSource.Play();
-            } else {
+            } 
+        } else {
+            if (backgroundMusicSource) {
                 backgroundMusicSource.Stop();
             }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision) {
+        PlayerHealthManager health = collision.gameObject.GetComponent<PlayerHealthManager>();
+
+        if (health) {
+            health.ModifyHealth(-1);
         }
     }
 

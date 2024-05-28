@@ -18,7 +18,7 @@ public class BossVacuumAttackRainDrop : BossAttackObject
     void Awake() {
         GetComponent<Rigidbody2D>().gravityScale = 0;
         spinDelta = Random.Range(5, 10) * Random.Range(0, 2) == 0 ? 1 : -1;
-        gameObject.layer = 7;
+        gameObject.layer = 9;
     }
 
     void FixedUpdate() {
