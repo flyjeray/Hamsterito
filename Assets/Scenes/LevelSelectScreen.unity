@@ -1586,8 +1586,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   level: 2
   requiredLevel: 1
-  sceneName: 
-  developed: 0
+  sceneName: ToasterScene
+  developed: 1
 --- !u!61 &2092532124
 BoxCollider2D:
   m_ObjectHideFlags: 0
