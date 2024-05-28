@@ -377,6 +377,8 @@ GameObject:
   - component: {fileID: 860965145}
   - component: {fileID: 860965144}
   - component: {fileID: 860965152}
+  - component: {fileID: 860965154}
+  - component: {fileID: 860965153}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -615,6 +617,42 @@ MonoBehaviour:
   projectilePrefab: {fileID: 8190011941201963136, guid: db13550808f6b4008b25428a77693f05, type: 3}
   spawnMarker: {fileID: 727785892}
   baseDelayBeforeLaunch: 1.25
+--- !u!114 &860965153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860965143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e760c654a9fe5441c8cfd098069361aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  phases:
+  - minPhaseInclusive: 1
+    maxPhaseInclusive: 1
+    attackStartDelay: 0.5
+    attackEndDelay: 0.5
+    objectSpeedMultiplier: 1
+  projectilePrefab: {fileID: 4403531444769659966, guid: 6e85c49f785b540d6976cf9ea58e0a9d, type: 3}
+  projectileSpawnMarker: {fileID: 727785892}
+  amountOfProjectiles: 3
+  delayBetweenShots: 0.3
+  rotationDelay: 0.3
+--- !u!114 &860965154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860965143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc80189c7bbe492aba4eb366ecfbad1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 15
 --- !u!1001 &1086116018
 PrefabInstance:
   m_ObjectHideFlags: 0

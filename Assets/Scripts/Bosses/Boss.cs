@@ -14,6 +14,7 @@ public class Boss : MonoBehaviour
     private List<BossAttack> currentAttacks = new List<BossAttack>{};
     private int currentPhase = 1;
     private bool active = false;
+    private bool movementLocked = false;
     private int[] buffer = new int[] {};
     private int maxBufferL;
 
@@ -110,4 +111,10 @@ public class Boss : MonoBehaviour
     }
 
     public bool IsEnabled() { return active; }
+
+    public void LockMovement(bool value) {
+        movementLocked = value;
+    }
+
+    public bool IsMovementLocked() { return movementLocked; }
 }

@@ -21,6 +21,8 @@ public class BossPongMovement : MonoBehaviour
     [SerializeField]
     private float maxAwaitTimeBeforeChangeDirection = 4;
 
+    private Boss boss;
+
     IEnumerator ChangeDirection() {
         while (true) {
             yield return new WaitForSeconds(UnityEngine.Random.Range(minAwaitTimeBeforeChangeDirection, maxAwaitTimeBeforeChangeDirection));
@@ -28,12 +30,16 @@ public class BossPongMovement : MonoBehaviour
         }
     }
 
+    void Awake() {
+        boss = GetComponent<Boss>();
+    }
+
     void Start() {
         StartCoroutine(ChangeDirection());
     }
 
     void FixedUpdate() {
-        if (GetComponent<Boss>().IsEnabled()) {
+        if (boss.IsEnabled() && !boss.IsMovementLocked()) {
             transform.position = Vector3.MoveTowards(
                 transform.position,
                 movingToX ? positionX.transform.position : positionY.transform.position,

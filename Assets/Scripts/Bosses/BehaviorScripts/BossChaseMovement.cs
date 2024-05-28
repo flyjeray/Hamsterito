@@ -14,13 +14,15 @@ public class BossChaseMovement : MonoBehaviour
     private bool chaseVertical;
 
     private Player player;
+    private Boss boss;
 
     void Awake() {
         player = FindObjectOfType<Player>();
+        boss = GetComponent<Boss>();
     }
 
     void FixedUpdate() {
-        if (GetComponent<Boss>().IsEnabled() && player) {
+        if (boss.IsEnabled() && !boss.IsMovementLocked() && player) {
             Vector3 destination = new Vector3(
                 chaseHorizontal ? player.transform.position.x : transform.position.x,
                 chaseVertical ? player.transform.position.y : transform.position.y,
