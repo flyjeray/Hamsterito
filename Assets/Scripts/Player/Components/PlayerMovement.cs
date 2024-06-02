@@ -54,10 +54,11 @@ public class PlayerMovement : MonoBehaviour
             }
             Vector2 direction = new Vector3(transform.position.x, box.bounds.min.y, transform.position.z) - transform.position;
             float distance = Vector2.Distance(transform.position, box.bounds.min);
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, LayerMask.GetMask("Ground"));
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, distance, LayerMask.GetMask("Ground", "IgnorableGround"));
             if (Input.GetKeyDown(KeyCode.Space) && hit.collider && movable) {
                 rb.AddForce(Vector2.up * JumpForce);
             }
+            Physics2D.IgnoreLayerCollision(6, 10, Input.GetKey(KeyCode.S));
         }
     }
 

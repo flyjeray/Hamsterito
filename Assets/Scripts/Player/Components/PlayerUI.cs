@@ -73,7 +73,10 @@ public class PlayerUI : MonoBehaviour
             pressToStartCanvas.enabled = false;
             Time.timeScale = 1;
             levelStarted = true;
-            FindAnyObjectByType<Boss>().Enable(true);
+            Boss boss = FindAnyObjectByType<Boss>();
+            if (boss) {
+                boss.Enable(true);
+            }
             GetComponent<Player>().SetActive(true);
         }
     }
