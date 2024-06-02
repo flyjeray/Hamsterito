@@ -13,18 +13,11 @@ public class PlayerCamera : MonoBehaviour
     private CinemachineBasicMultiChannelPerlin perlin;
     [SerializeField]
     private NoiseSettings noiseProfile;
-    private PlayerAttacking playerAttacking;
-    private Player player;
     [SerializeField]
     private Collider2D levelCameraBounds;
 
     [SerializeField]
-    private float regularSize = 5;
-    [SerializeField]
-    private float aimingSize = 10;
-    private bool isAiming = false;
-    private float restingCameraYOffset = 1.5f;
-    private bool disableAimingZooming = false;
+    private float cameraSize = 10;
 
     void Awake() {
         Camera.main.gameObject.TryGetComponent<CinemachineBrain>(out var brain);
@@ -38,7 +31,7 @@ public class PlayerCamera : MonoBehaviour
         virtualCamera = camera.AddComponent<CinemachineVirtualCamera>();
         virtualCamera.Follow = transform;
         transposer = virtualCamera.AddCinemachineComponent<CinemachineTransposer>();
-        transposer.m_FollowOffset = new Vector3(0, restingCameraYOffset, -1);
+        transposer.m_FollowOffset = new Vector3(0, 0, -1);
         confiner = camera.AddComponent<CinemachineConfiner>();
         confiner.m_ConfineMode = CinemachineConfiner.Mode.Confine2D;
         confiner.m_BoundingShape2D = levelCameraBounds;
@@ -47,22 +40,7 @@ public class PlayerCamera : MonoBehaviour
         perlin.m_NoiseProfile = noiseProfile;
         SetShake(0);
 
-        virtualCamera.m_Lens.OrthographicSize = regularSize;
-
-        playerAttacking = GetComponent<PlayerAttacking>();
-        player = GetComponent<Player>();
-    }
-
-    public void UpdateAimingState(bool _isAiming) {
-        if (player.IsActive()) {
-            isAiming = _isAiming;
-            virtualCamera.m_Lens.OrthographicSize = isAiming ? aimingSize : regularSize;
-            transposer.m_FollowOffset = new Vector3(
-                0,
-                playerAttacking.IsAiming() ? 0 : restingCameraYOffset,
-                transposer.m_FollowOffset.z
-            );
-        }
+        virtualCamera.m_Lens.OrthographicSize = cameraSize;
     }
 
     public void SetShake(float intensity) {

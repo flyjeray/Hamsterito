@@ -57,11 +57,7 @@ public class PlayerAttacking : MonoBehaviour
     }
 
     void Update() {
-        if (playerCamera != null) {
-            playerCamera.UpdateAimingState(isAiming);
-        }
-
-        if (Input.GetKeyDown(KeyCode.R) && weapon && !weapon.IsReloading() && weapon.IsReloadNeeded()) {
+        if (Input.GetKeyDown(KeyCode.R) && weapon && !weapon.IsReloading() && weapon.IsReloadNeeded() && player.IsActive()) {
             weapon.Reload();
         } else if (isAiming && weapon && player.IsActive()) {
             Vector3 cursorPointOnScreen = Camera.main.ScreenToWorldPoint(Input.mousePosition);

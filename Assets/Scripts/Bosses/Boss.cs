@@ -76,6 +76,7 @@ public class Boss : MonoBehaviour
             gameObject.transform.SetParent(transform);
             backgroundMusicSource.loop = true;
             backgroundMusicSource.clip = backgroundMusic;
+            backgroundMusicSource.volume = 0.2f;
         }
     }
 

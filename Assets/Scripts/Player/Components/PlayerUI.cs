@@ -69,11 +69,12 @@ public class PlayerUI : MonoBehaviour
     }
 
     void Update() {
-        if (Input.anyKey && !levelStarted) {
+        if (Input.GetKeyDown(KeyCode.Space) && !levelStarted) {
             pressToStartCanvas.enabled = false;
             Time.timeScale = 1;
             levelStarted = true;
             FindAnyObjectByType<Boss>().Enable(true);
+            GetComponent<Player>().SetActive(true);
         }
     }
 }

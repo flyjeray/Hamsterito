@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate() {
         if (player.IsActive()) {
+            rb.isKinematic = false;
             rb.velocity = new Vector2(movement * Speed * (playerAttacking.IsAiming() ? AimingSpeedMultiplier : 1), rb.velocity.y);
         } else {
             rb.isKinematic = true;

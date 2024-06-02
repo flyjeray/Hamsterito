@@ -10,7 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerHealthManager))]
 [RequireComponent(typeof(PlayerAudio))]
 public class Player : MonoBehaviour {
-    public bool active = true;
+    public bool active;
 
     public bool IsActive() { return active; }
 
@@ -20,5 +20,6 @@ public class Player : MonoBehaviour {
         gameObject.tag = "Player";
         gameObject.name = "PLAYER";
         gameObject.layer = 6;
+        active = false;
     }
 }

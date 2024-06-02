@@ -28,7 +28,15 @@ public class Projectile : MonoBehaviour
 
     public void SetDirection(Vector3 target, Collider2D sender) {
         Physics2D.IgnoreCollision(GetComponent<BoxCollider2D>(), sender);
-        Vector3 dir = Vector3.Normalize((target - transform.position) * 10000);
+        Vector3 dir = target - transform.position;
+        dir = new Vector3(dir.x, dir.y, 0);
+
+        if (dir.magnitude > 1) {
+            dir = dir.normalized;
+        } else if (dir.magnitude > 0) {
+            dir = dir / dir.magnitude;
+        }
+
         movementDirection = dir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
