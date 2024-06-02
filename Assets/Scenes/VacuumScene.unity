@@ -206,7 +206,7 @@ GameObject:
   - component: {fileID: 368003679}
   - component: {fileID: 368003680}
   m_Layer: 0
-  m_Name: BossTest
+  m_Name: Vacuum Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

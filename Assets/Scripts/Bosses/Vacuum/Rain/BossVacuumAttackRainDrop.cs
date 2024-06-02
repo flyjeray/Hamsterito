@@ -6,7 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(BoxCollider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent(typeof(BossVacuumAttackRainDropHealth))]
 public class BossVacuumAttackRainDrop : BossAttackObject
 {
     private float spinDelta;

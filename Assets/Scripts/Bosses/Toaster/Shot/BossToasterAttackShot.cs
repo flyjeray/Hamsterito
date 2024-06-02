@@ -26,7 +26,9 @@ public class BossToasterAttackShot : BossAttack
 
         if (component) {
             yield return new WaitForSeconds(baseDelayBeforeLaunch / parameters.objectSpeedMultiplier);
-            component.Launch();
+            if (component) {
+                component.Launch();
+            }
         } else {
             yield return new WaitForSeconds(0);
         }
