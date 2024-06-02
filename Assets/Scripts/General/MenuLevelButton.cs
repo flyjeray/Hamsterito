@@ -45,7 +45,7 @@ public class MenuLevelButton : MonoBehaviour
         }
     }
 
-    private void FixedUpdate() {
+    private void Update() {
         if (Input.GetMouseButtonDown(0)) {
             OnClick();
         }
