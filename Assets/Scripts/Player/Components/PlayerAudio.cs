@@ -17,13 +17,13 @@ public class PlayerAudio : MonoBehaviour
         shotSource = shotSourceGameObject.AddComponent<AudioSource>();
         shotSource.loop = false;
         shotSource.clip = shotSound;
-        shotSource.volume = .08f;
+        shotSource.volume = .03f;
 
         GameObject reloadSourceGameObject = new GameObject("Player - Reload Sound Source");
         reloadSource = reloadSourceGameObject.AddComponent<AudioSource>();
         reloadSource.loop = false;
         reloadSource.clip = reloadSound;
-        reloadSource.volume = .08f;
+        reloadSource.volume = .03f;
     }
 
     public void PlayShot() {
